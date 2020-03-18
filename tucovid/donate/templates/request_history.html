@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <div class="custom-container">
+      <div class="sidebar">
+        <div class="logo">
+          <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="" />
+        </div>
+        <h4 class="title">Thammask system</h4>
+        <div class="menu">
+          <div class="menu-group">
+            <span class="helper">
+              หมวดผู้บริจาค
+            </span>
+            <a href="{% url 'donate_history' %}" class="menu-item is-active">ประวัติการบริจาค</a>
+            <a href="{% url 'donate' %}" class="menu-item">บริจาคสิ่งของ</a>
+            <a href="https://taejai.com/th/" class="menu-item" target="_blank">บริคจาคเงินสมทบทุน</a>
+          </div>
+          <div class="menu-group">
+            <span class="helper">
+              หมวดผู้ขอรับบริจาค
+            </span>
+            <a href="{% url 'request_history' %}" class="menu-item">ประวัติการขอรับบริจาค</a>
+            <a href="{% url 'request' %}" class="menu-item">ขอรับบริจาค</a>
+          </div>
+          <div class="menu-group">
+            <span class="helper">
+              Something
+            </span>
+            <a href="{% url 'request_history' %}" class="menu-item">ประวัติส่วนตัว</a>
+            <a href="{% url 'request' %}" class="menu-item">ออกจากระบบ</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <h4 class="title is-4 no-margin">ประวัติการขอรับบริจาค</h4>
+        <table class="table is-fullwidth is-striped margin-top">
+          <thead>
+            <tr>
+              <th width="40%">รายการ</th>
+              <th width="10%">จำนวน</th>
+              <th width="30%">ที่อยู่ผู้รับ</th>
+              <th width="10%">สถานะ</th>
+              <th>หมายเลขติดตามพัสดุ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Surgical Facial Mask</td>
+              <td>1,000 pieces</td>
+              <td>หมู่ที่ 8 95 ถนน พหลโยธิน ตำบล คลองหนึ่ง อำเภอคลองหลวง ปทุมธานี 12120</td>
+              <td>Shipping</td>
+              <td>TUSHIPPING000000001</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+{% endblock content %}

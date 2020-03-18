@@ -6,10 +6,6 @@ class Item(models.Model):
     item_name = models.CharField(max_length=255)
     quantity = models.DecimalField(max_digits=15, decimal_places=2)
 
-class Review(models.Model):
-    receive = models.OneToOneField(Receive, on_delete=models.CASCADE)
-    score = models.IntegerField()
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
@@ -61,3 +57,7 @@ class Receive(models.Model):
     shipping_address = models.TextField()
     shipping_id = models.CharField(max_length=30)
     note = models.TextField()
+
+class Review(models.Model):
+    receive = models.OneToOneField(Receive, on_delete=models.CASCADE)
+    score = models.IntegerField()

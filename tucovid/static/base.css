@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+}
+
+.custom-container {
+  display: flex;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: auto;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  flex-grow: 1;
+  margin: 48px 60px;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  width: 128px;
+  height: 128px;
+  margin-top: 48px;
+}
+
+.logo > img {
+  width: inherit;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.input,
+.textarea {
+  max-width: 800px;
+  min-width: fit-content;
+}
+
+.margin-top {
+  margin-top: 24px;
+}
+
+.settings-up-form {
+  margin-top: 52px;
+}
+
+.menu-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-group + .menu-group {
+  margin-top: 12px;
+}
+
+.menu-group > .helper {
+  margin-bottom: 0;
+  color: #888888;
+}
+
+.menu-item {
+  font-size: 18px;
+  color: #707070;
+  margin-left: -60px;
+  padding-left: 60px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: calc(100% + 120px);
+}
+
+.menu-item.is-active {
+  background-color: #c1e9f8;
+}
+
+.likert-scale {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 800px;
+  text-align: center;
+  align-items: center;
+}
+
+.likert-scale > input[type='radio'] {
+  width: 100%;
+}
