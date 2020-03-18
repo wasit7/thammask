@@ -1,120 +1,100 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div class="custom-container">
-      <div class="sidebar">
-        <div class="logo">
-          <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="" />
+  <div class="content">
+    <h4 class="title is-4 no-margin">ขอรับบริจาค</h4>
+    <form action="" class="settings-up-form">
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">ชื่อ-นามสกุล ผู้ขอรับบริจาค*</label>
         </div>
-        <h4 class="title">Thammask system</h4>
-        <div class="menu">
-          <div class="menu-group">
-            <span class="helper">
-              หมวดผู้บริจาค
-            </span>
-            <a href="{% url 'donate_history' %}" class="menu-item is-active">ประวัติการบริจาค</a>
-            <a href="{% url 'donate' %}" class="menu-item">บริจาคสิ่งของ</a>
-            <a href="https://taejai.com/th/" class="menu-item" target="_blank">บริคจาคเงินสมทบทุน</a>
-          </div>
-          <div class="menu-group">
-            <span class="helper">
-              หมวดผู้ขอรับบริจาค
-            </span>
-            <a href="{% url 'request_history' %}" class="menu-item">ประวัติการขอรับบริจาค</a>
-            <a href="{% url 'request' %}" class="menu-item">ขอรับบริาค</a>
-          </div>
-          <div class="menu-group">
-            <span class="helper">
-              Something
-            </span>
-            <a href="{% url 'request_history' %}" class="menu-item">ประวัติส่วนตัว</a>
-            <a href="{% url 'request' %}" class="menu-item">ออกจากระบบ</a>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" />
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="content">
-        <h4 class="title is-4 no-margin">ขอรับบริจาค</h4>
-        <form action="" class="settings-up-form">
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">ชื่อ-นามสกุล ผู้ขอรับบริจาค*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="E.g. Dr.Admin Thammask" />
-                </div>
-              </div>
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">สิ่งของที่ต้องการขอรับบริจาค*</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" placeholder="เช่น Non-wevon fabric" />
             </div>
           </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">สิ่งของที่ต้องการขอรับบริจาค*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="E.g. Non-wevon fabric" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">จำนวน*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" id="date_of_birth" placeholder="E.g. 1000" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">หน่วย*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="E.g. pieces" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">หมายเลขติดตามพัสดุ*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <textarea class="textarea" placeholder="E.g. Shipping from other country"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal margin-top">
-            <div class="field-label"></div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <button class="button is-primary">
-                    ยืนยัน
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
-    {% endblock content %}
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">จำนวน*</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" id="date_of_birth" placeholder="เช่น 1000" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">หน่วย*</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <input class="input" type="text" placeholder="เช่น pieces" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">ที่อยู่ผู้รับ</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" placeholder="เช่น Bangkok"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label">หมายเหตุ</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" placeholder="เช่น Shipping from other country"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field is-horizontal margin-top">
+        <div class="field-label"></div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary">
+                ยืนยัน
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock content %}

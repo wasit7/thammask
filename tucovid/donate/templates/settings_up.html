@@ -1,153 +1,149 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load static %}
+
+{% block menu %}
+{% endblock menu %}
 {% block content %}
-    <div class="custom-container">
-      <div class="sidebar">
-        <div class="logo">
-          <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="" />
-        </div>
-        <h4 class="title">Thammask system</h4>
+<div class="content">
+  <h4 class="title is-4 no-margin">ประวัติส่วนตัว</h4>
+  <form action="{% url 'donate_history' %}" class="settings-up-form">
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">ชื่อ - นามสกุล*</label>
       </div>
-      <div class="content">
-        <h4 class="title is-4 no-margin">ประวัติส่วนตัว</h4>
-        <form action="{% url 'donate_history' %}" class="settings-up-form">
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">ชื่อ - นามสกุล*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" />
-                </div>
-              </div>
-            </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" />
           </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">เลขบัตรประชาชน/หนังสือเดินทาง*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="เช่น 1xxxxxxxxxxxx" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">วัน/เดือน/ปี เกิด*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" id="date_of_birth" placeholder="เช่น 10 January 1960" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">อีเมล*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="email" placeholder="เช่น admin@thammask.com" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">เบอร์โทรศัพท์.*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="เช่น 099-9999999" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">อาชีพ*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="เช่น Surgical Docter" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">เลขที่ใบประกอบวิชาชีพเวชกรรมฯ</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
-                </div>
-                <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">ชื่อองค์กร</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
-                </div>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">เบอร์โทรศัพท์ องค์กร</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
-                </div>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal margin-top">
-            <div class="field-label"></div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <button class="button is-primary" type="submit">
-                    ยืนยัน
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">เลขบัตรประชาชน/หนังสือเดินทาง*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="เช่น 1xxxxxxxxxxxx" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">วัน/เดือน/ปี เกิด*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" id="date_of_birth" placeholder="เช่น 10 January 1960" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">อีเมล*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="email" placeholder="เช่น admin@thammask.com" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">เบอร์โทรศัพท์.*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="เช่น 099-9999999" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">อาชีพ*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="เช่น Surgical Docter" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">เลขที่ใบประกอบวิชาชีพเวชกรรมฯ</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
+          </div>
+          <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">ชื่อองค์กร</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">เบอร์โทรศัพท์ องค์กร</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal margin-top">
+      <div class="field-label"></div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <button class="button is-primary" type="submit">
+              ยืนยัน
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 {% endblock content %}
+
 {% block script %}
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>

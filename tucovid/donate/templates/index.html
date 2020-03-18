@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 <html>
   <head>
@@ -10,25 +11,28 @@
     <link rel="stylesheet" href="{% static 'base.css' %}">
   </head>
   <body>
-    {% block content %}
+    
     <div class="custom-container">
       <div class="sidebar">
         <div class="logo">
           <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="">
         </div>
         <h4 class="title">Thammask system</h4>
+        {% block menu %}
         <div class="menu">
           <span class="helper">
             Sign in with your social account
           </span>
           <a href="{% url 'profile' %}" class="button fb-button">Sign in with Facebook</a>
         </div>
+        {% endblock menu %}
       </div>
+      {% block content %}
       <div class="content no-margin">
         <img src="{% static 'assets/23886841.png' %}" class="main-image" alt="">
       </div>
+      {% endblock content %}
     </div>
-    {% endblock content %}
   </body>
 {% block script %}
 {% endblock script %}
