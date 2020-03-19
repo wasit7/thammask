@@ -1,5 +1,6 @@
-body {
+body, html {
   margin: 0;
+  overflow: hidden;
 }
 
 .custom-container {
@@ -11,7 +12,7 @@ body {
 
 .sidebar {
   width: auto;
-  padding: 0 60px;
+  padding: 0 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +20,8 @@ body {
 
 .content {
   flex-grow: 1;
-  margin: 48px 60px;
+  padding: 48px 60px;
+  overflow-y: auto;
 }
 
 .no-margin {

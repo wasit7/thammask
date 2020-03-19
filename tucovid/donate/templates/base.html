@@ -24,23 +24,23 @@
                 <span class="helper">
                 หมวดผู้บริจาค
                 </span>
-                <a href="{% url 'donate_history' %}" class="menu-item is-active">ประวัติการบริจาค</a>
-                <a href="{% url 'donate' %}" class="menu-item">บริจาคสิ่งของ</a>
+                <a href="{% url 'donate:donate_history' %}" class="menu-item {% if request.path == '/donate_history/' %} is-active {% endif %}">ประวัติการบริจาค</a>
+                <a href="{% url 'donate:donate' %}" class="menu-item {% if request.path == '/donate/' %} is-active {% endif %}" >บริจาคสิ่งของ</a>
                 <a href="https://taejai.com/th/" class="menu-item" target="_blank">บริคจาคเงินสมทบทุน</a>
             </div>
             <div class="menu-group">
                 <span class="helper">
                 หมวดผู้ขอรับบริจาค
                 </span>
-                <a href="{% url 'request_history' %}" class="menu-item">ประวัติการขอรับบริจาค</a>
-                <a href="{% url 'request' %}" class="menu-item">ขอรับบริจาค</a>
+                <a href="{% url 'donate:request_history' %}" class="menu-item {% if request.path == '/request_history/' %} is-active {% endif %}">ประวัติการขอรับบริจาค</a>
+                <a href="{% url 'donate:request' %}" class="menu-item {% if request.path == '/request/' %} is-active {% endif %}">ขอรับบริจาค</a>
             </div>
             <div class="menu-group">
                 <span class="helper">
                 Something
                 </span>
-                <a href="{% url 'profile' %}" class="menu-item">ประวัติส่วนตัว</a>
-                <a href="{% url 'request' %}" class="menu-item">ออกจากระบบ</a>
+                <a href="{% url 'donate:profile' %}" class="menu-item">ประวัติส่วนตัว</a>
+                <a href="{% url 'logout' %}" class="menu-item">ออกจากระบบ</a>
             </div>
         </div>
         {% endblock menu %}

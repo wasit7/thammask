@@ -5,8 +5,8 @@
 {% endblock menu %}
 {% block content %}
 <div class="content">
-  <h4 class="title is-4 no-margin">ประวัติส่วนตัว</h4>
-  <form action="{% url 'profile' %}" class="settings-up-form" method="POST">
+  <h4 class="title is-4 no-margin">ประวัติส่วนตัว {{ request.user }}</h4>
+  <form action="{% url 'donate:profile' %}" class="settings-up-form" method="POST">
     {% csrf_token %}
     <div class="field is-horizontal">
       <div class="field-label is-normal">
@@ -15,7 +15,8 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="full_name" />
+            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="full_name" {% if data.full_name != None %} value="{{ data.full_name }}" {% endif %} />
+            
           </div>
         </div>
       </div>
@@ -28,7 +29,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น 1xxxxxxxxxxxx" name="thai_citizen_id" />
+            <input class="input" type="text" placeholder="เช่น 1xxxxxxxxxxxx" name="thai_citizen_id" {% if data.thai_citizen_id != None %} value="{{ data.thai_citizen_id }}" {% endif %} />
           </div>
         </div>
       </div>
@@ -41,7 +42,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" id="date_of_birth" placeholder="เช่น 10 January 1960" name="date_of_birth" />
+            <input class="input" type="text" id="date_of_birth" placeholder="เช่น 10 January 1960" name="date_of_birth" {% if data.date_of_birth != None %} value="{{ data.date_of_birth }}" {% endif %} />
           </div>
         </div>
       </div>
@@ -54,7 +55,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="email" placeholder="เช่น admin@thammask.com" name="email" />
+            <input class="input" type="email" placeholder="เช่น admin@thammask.com" name="email" {% if data.email != None %} value="{{ data.email }}" {% endif %} />
           </div>
         </div>
       </div>
@@ -67,7 +68,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" />
+            <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" {% if data.telephone != None %} value="{{ data.telephone }}" {% endif %} />
           </div>
         </div>
       </div>
@@ -80,7 +81,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น Surgical Docter" name="job" />
+            <input class="input" type="text" placeholder="เช่น Surgical Docter" name="job" {% if data.job != None %} value="{{ data.job }}" {% endif %} />
           </div>
         </div>
       </div>
@@ -93,7 +94,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="holding_medical_license_no" />
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="holding_medical_license_no" {% if data.holding_medical_license_no != None %} value="{{ data.holding_medical_license_no }}" {% endif %} />
           </div>
           <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
         </div>
@@ -107,7 +108,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="organization" />
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="organization" {% if data.organization != None %} value="{{ data.organization }}" {% endif %} />
           </div>
           
         </div>
@@ -121,7 +122,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="tel_organization" />
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="tel_organization" {% if data.tel_organization != None %} value="{{ data.tel_organization }}" {% endif %} />
           </div>
           
         </div>

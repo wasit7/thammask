@@ -3,7 +3,7 @@
 {% block content %}
   <div class="content">
     <h4 class="title is-4 no-margin">บริจาคสิ่งของ</h4>
-    <form action="{% url 'donate' %}" class="settings-up-form" method="POST">
+    <form action="{% url 'donate:donate' %}" class="settings-up-form" method="POST">
       {% csrf_token %}
       <div class="field is-horizontal">
         <div class="field-label is-normal">

@@ -22,6 +22,10 @@ class Profile(models.Model):
     organization = models.CharField(max_length=500, null=True, blank=True)
     tel_organization = models.CharField(max_length=50, null=True, blank=True)
 
+    # def save(self, req):
+    #     if self.pk == None:
+    #         self.user = request.user
+
     def __str__(self):
         return self.full_name
     
