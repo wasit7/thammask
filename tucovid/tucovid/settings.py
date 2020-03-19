@@ -54,8 +54,8 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '604052317110535'       # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '33c834f85105667ed7ee55fd34cabf27'  # App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('FACEBOOK_KEY', '604052317110535')  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('FACEBOOK_SECRET', '33c834f85105667ed7ee55fd34cabf27')  # App Secret
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'donate:check_user_exists'
 
 LOGOUT_URL = 'logout'
