@@ -2,10 +2,36 @@
 {% load static %}
 
 {% block menu %}
-{% endblock menu %}
+{% if data.full_name != None %}
+<div class="menu">
+  <div class="menu-group">
+      <span class="helper">
+      หมวดผู้บริจาค
+      </span>
+      <a href="{% url 'donate:donate_history' %}" class="menu-item {% if request.path == '/donate_history/' %} is-active {% endif %}">ประวัติการบริจาค</a>
+      <a href="{% url 'donate:donate' %}" class="menu-item {% if request.path == '/donate/' %} is-active {% endif %}" >บริจาคสิ่งของ</a>
+      <a href="https://taejai.com/th/" class="menu-item" target="_blank">บริคจาคเงินสมทบทุน</a>
+  </div>
+  <div class="menu-group">
+      <span class="helper">
+      หมวดผู้ขอรับบริจาค
+      </span>
+      <a href="{% url 'donate:request_history' %}" class="menu-item {% if request.path == '/request_history/' %} is-active {% endif %}">ประวัติการขอรับบริจาค</a>
+      <a href="{% url 'donate:request' %}" class="menu-item {% if request.path == '/request/' %} is-active {% endif %}">ขอรับบริจาค</a>
+  </div>
+  <div class="menu-group">
+      <span class="helper">
+      Something
+      </span>
+      <a href="{% url 'donate:profile' %}" class="menu-item {% if request.path == '/profile/' %} is-active {% endif %}">ประวัติส่วนตัว</a>
+      <a href="{% url 'logout' %}" class="menu-item">ออกจากระบบ</a>
+  </div>
+</div>
+{% endif %}
+{% endblock menu%}
 {% block content %}
 <div class="content">
-  <h4 class="title is-4 no-margin">ประวัติส่วนตัว {{ request.user }}</h4>
+  <h4 class="title is-4 no-margin">ประวัติส่วนตัว</h4>
   <form action="{% url 'donate:profile' %}" class="settings-up-form" method="POST">
     {% csrf_token %}
     <div class="field is-horizontal">

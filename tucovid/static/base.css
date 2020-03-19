@@ -85,7 +85,7 @@ body, html {
   padding-left: 60px;
   padding-top: 8px;
   padding-bottom: 8px;
-  width: calc(100% + 120px);
+  width: calc(100% + 108px);
 }
 
 .menu-item.is-active {

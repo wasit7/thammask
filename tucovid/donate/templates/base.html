@@ -39,7 +39,7 @@
                 <span class="helper">
                 Something
                 </span>
-                <a href="{% url 'donate:profile' %}" class="menu-item">ประวัติส่วนตัว</a>
+                <a href="{% url 'donate:profile' %}" class="menu-item {% if request.path == '/profile/' %} is-active {% endif %}">ประวัติส่วนตัว</a>
                 <a href="{% url 'logout' %}" class="menu-item">ออกจากระบบ</a>
             </div>
         </div>
