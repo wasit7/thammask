@@ -6,8 +6,8 @@
 {% block content %}
 <div class="content">
   <h4 class="title is-4 no-margin">ประวัติส่วนตัว</h4>
-  <form action="{% url 'donate_history' %}" class="settings-up-form">
-
+  <form action="{% url 'profile' %}" class="settings-up-form" method="POST">
+    {% csrf_token %}
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">ชื่อ - นามสกุล*</label>
@@ -15,7 +15,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" />
+            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="full_name" />
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น 1xxxxxxxxxxxx" />
+            <input class="input" type="text" placeholder="เช่น 1xxxxxxxxxxxx" name="thai_citizen_id" />
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" id="date_of_birth" placeholder="เช่น 10 January 1960" />
+            <input class="input" type="text" id="date_of_birth" placeholder="เช่น 10 January 1960" name="date_of_birth" />
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="email" placeholder="เช่น admin@thammask.com" />
+            <input class="input" type="email" placeholder="เช่น admin@thammask.com" name="email" />
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น 099-9999999" />
+            <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" />
           </div>
         </div>
       </div>
@@ -80,7 +80,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น Surgical Docter" />
+            <input class="input" type="text" placeholder="เช่น Surgical Docter" name="job" />
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="holding_medical_license_no" />
           </div>
           <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
         </div>
@@ -107,7 +107,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="organization" />
           </div>
           
         </div>
@@ -121,7 +121,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" />
+            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="tel_organization" />
           </div>
           
         </div>

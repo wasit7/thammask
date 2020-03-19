@@ -7,31 +7,23 @@
   <table class="table is-fullwidth is-striped margin-top">
     <thead>
       <tr>
-        <th width="50%">รายการ</th>
+        <th width="30%">รายการ</th>
         <th width="15%">จำนวน</th>
         <th width="15%">สถานะ</th>
+        <th width="20%">หมายเลขติดตามพัสดุ</th>
         <th>หมายเหตุ</th>
       </tr>
     </thead>
     <tbody>
+      {% for data in data %}
       <tr>
-        <td>Cotton HEPA Filtering</td>
-        <td>1,000 pieces</td>
-        <td class="is-recieved">Recieved</td>
-        <td></td>
+        <td>{{ data.item }}</td>
+        <td>{{ data.quantity }}</td>
+        <td>{{ data.status }}</td>
+        <td>{{ data.shipping_id }}</td>
+        <td>{{ data.note }}</td>
       </tr>
-      <tr>
-        <td>Non-wevon fabric</td>
-        <td>1,000 pieces</td>
-        <td class="is-recieved">Recieved</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Non-wevon fabric</td>
-        <td>1,000 pieces</td>
-        <td class="is-cancel">Cancel</td>
-        <td></td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>

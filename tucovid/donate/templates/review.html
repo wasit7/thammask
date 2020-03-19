@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load static %}
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -19,7 +21,9 @@
         </div>
         <h4 class="title">Thammask system</h4>
       </div>
-
+      {% block menu %}
+      {% endblock menu %}
+      {% block content %}
       <div class="content">
         <h4 class="title is-4 no-margin">Review for TUSHIPPING000000001</h4>
         <form action="" class="settings-up-form">
@@ -28,18 +32,18 @@
             <div class="field-label is-normal"></div>
             <div class="field-body">
               <div class="likert-scale">
-                <p class="no-margin">Strongly disagree</p>
-                <p class="no-margin">Disagree</p>
-                <p class="no-margin">Neutral</p>
-                <p class="no-margin">Agree</p>
-                <p class="no-margin">Strongly agree</p>
+                <p class="no-margin">ไม่เห็นด้วยอย่างยิ่ง</p>
+                <p class="no-margin">ไม่เห็นด้วย</p>
+                <p class="no-margin">เฉยๆ</p>
+                <p class="no-margin">เห็นด้วย</p>
+                <p class="no-margin">เห็นด้วยอย่างยิ่ง</p>
               </div>
             </div>
           </div>
 
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label">Question 1*</label>
+              <label class="label">คำถามข้อที่ 1*</label>
             </div>
             <div class="field-body">
               <div class="likert-scale">
@@ -54,7 +58,7 @@
 
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label">Question 2*</label>
+              <label class="label">คำถามข้อที่ 2*</label>
             </div>
             <div class="field-body">
               <div class="likert-scale">
@@ -69,7 +73,7 @@
 
           <div class="field is-horizontal">
             <div class="field-label is-normal">
-              <label class="label">Comment*</label>
+              <label class="label">ข้อเสนอแนะ*</label>
             </div>
             <div class="field-body">
               <div class="field">
@@ -86,7 +90,7 @@
               <div class="field">
                 <div class="control">
                   <button class="button is-primary">
-                    Send your review
+                    ยืนยัน
                   </button>
                 </div>
               </div>
@@ -94,6 +98,7 @@
           </div>
         </form>
       </div>
+      {% endblock content %}
     </div>
   </body>
 </html>
