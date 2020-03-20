@@ -13,7 +13,7 @@ services:
   #   restart: always
 
   thammask-django:
-    build: ./thammask
+    build: ./tucovid
     command: sh /thammask/runserver.sh
     container_name: thammask-django
     env_file: .env.production
