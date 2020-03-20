@@ -29,7 +29,7 @@ services:
     - proxy
     restart: always
     volumes:
-    - ./thammask:/thammask
+    - ./tucovid:/thammask
 
 networks:
   # internal:
