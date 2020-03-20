@@ -1,0 +1,38 @@
+version: '3'
+services:
+  # thammask-db:
+  #   image: postgres:11.3-alpine
+  #   container_name: thammask-db
+  #   env_file: .env.production
+  #   volumes:
+  #   - /home/kubelab/data/thammask_data:/var/lib/postgresql/data
+  #   networks:
+  #   - internal
+  #   labels:
+  #   - traefik.enable=false
+  #   restart: always
+
+  thammask-django:
+    build: ./thammask
+    command: sh /thammask/runserver.sh
+    container_name: thammask-django
+    env_file: .env.production
+    # depends_on:
+    # - thammask-db
+    labels:
+    - traefik.backend=thammask-django
+    - traefik.docker.network=proxy
+    - traefik.frontend.rule=Host:thammask.storemesh.com;PathPrefix:/
+    - traefik.port=8000
+    networks:
+    # - internal
+    - proxy
+    restart: always
+    volumes:
+    - ./thammask:/thammask
+
+networks:
+  # internal:
+  #   external: false
+  proxy:
+    external: true
