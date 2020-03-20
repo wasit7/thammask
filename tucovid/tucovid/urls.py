@@ -23,6 +23,6 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('donate.urls')),
-    path('social-auth/', include('social_django.urls', namespace="social")),
+    path('oauth/', include('social_django.urls', namespace="social")),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
