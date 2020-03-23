@@ -109,6 +109,11 @@ body, html {
   width: 100%;
 }
 
-.mobile-only {
+.mobile-only,
+#navbar-burger-menu {
   display: none;
+}
+
+.control > .is-fullwidth {
+  max-width: 800px;
 }
