@@ -10,7 +10,7 @@
   .sidebar {
     flex-direction: row;
     z-index: 100;
-    padding: 4px;
+    padding: 12px;
   }
 
   .mobile-hidden {
@@ -24,7 +24,8 @@
   .logo {
     width: 32px;
     height: auto;
-    margin: 0 12px;
+    margin-right: 12px;
+    margin-top: 0;
   }
 
   .sidebar > .title {
@@ -60,5 +61,10 @@
 
   #navbar-burger-menu.is-active {
     display: block;
+  }
+
+  .navbar-burger {
+    width: auto;
+    height: auto;
   }
 }
