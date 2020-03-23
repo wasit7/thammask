@@ -1,0 +1,162 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>THAMMASK</title>
+    <meta name="description" content="THAMMASK" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    <link rel="stylesheet" href="{% static 'mobile.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+  </head>
+  <body>
+    <div class="custom-container">
+      <div class="sidebar">
+        <div class="logo">
+          <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="" />
+        </div>
+        <h4 class="title">Thammask system</h4>
+        <div class="menu mobile-hidden">
+          {% if not request.user.is_anonymous %}
+          <div class="menu-group">
+            <span class="helper">
+              หมวดผู้บริจาค
+            </span>
+            <a
+              href="{% url 'donate:donate_history' %}"
+              class="menu-item {% if request.path == '/donate_history/' %} is-active {% endif %}"
+              >ประวัติการบริจาค</a
+            >
+            <a
+              href="{% url 'donate:donate' %}"
+              class="menu-item {% if request.path == '/donate/' %} is-active {% endif %}"
+              >บริจาคสิ่งของ</a
+            >
+            <a href="https://taejai.com/th/" class="menu-item" target="_blank"
+              >บริคจาคเงินสมทบทุน</a
+            >
+          </div>
+          <div class="menu-group">
+            <span class="helper">
+              หมวดผู้ขอรับบริจาค
+            </span>
+            <a
+              href="{% url 'donate:request_history' %}"
+              class="menu-item {% if request.path == '/request_history/' %} is-active {% endif %}"
+              >ประวัติการขอรับบริจาค</a
+            >
+            <a
+              href="{% url 'donate:request' %}"
+              class="menu-item {% if request.path == '/request/' %} is-active {% endif %}"
+              >ขอรับบริจาค</a
+            >
+          </div>
+          <div class="menu-group">
+            <span class="helper">
+              หมวดอื่น ๆ
+            </span>
+            <a
+              href="{% url 'donate:profile' %}"
+              class="menu-item {% if request.path == '/profile/' %} is-active {% endif %}"
+              >ประวัติส่วนตัว</a
+            >
+            <a href="{% url 'logout' %}" class="menu-item">ออกจากระบบ</a>
+          </div>
+          {% else %}
+          <span class="helper">
+            Sign in with your social account
+          </span>
+          <a href="{% url 'social:begin' 'facebook' %}" class="button fb-button"
+            >Sign in with Facebook</a
+          >
+          {% endif %}
+        </div>
+        <div class="mobile-only">
+          <a class="navbar-burger burger" id="navbar-burger">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+      <div id="navbar-burger-menu" class="navbar-menu">
+        {% if not request.user.is_anonymous %}
+
+        <div class="menu-group">
+          <span class="helper">
+            หมวดผู้บริจาค
+          </span>
+          <a
+            href="{% url 'donate:donate_history' %}"
+            class="navbar-item {% if request.path == '/donate_history/' %} is-active {% endif %}"
+            >ประวัติการบริจาค</a
+          >
+          <a
+            href="{% url 'donate:donate' %}"
+            class="navbar-item {% if request.path == '/donate/' %} is-active {% endif %}"
+            >บริจาคสิ่งของ</a
+          >
+          <a href="https://taejai.com/th/" class="navbar-item" target="_blank"
+            >บริคจาคเงินสมทบทุน</a
+          >
+        </div>
+
+        <div class="menu-group">
+          <span class="helper">
+            หมวดผู้ขอรับบริจาค
+          </span>
+          <a
+            href="{% url 'donate:request_history' %}"
+            class="navbar-item {% if request.path == '/request_history/' %} is-active {% endif %}"
+            >ประวัติการขอรับบริจาค</a
+          >
+          <a
+            href="{% url 'donate:request' %}"
+            class="navbar-item {% if request.path == '/request/' %} is-active {% endif %}"
+            >ขอรับบริจาค</a
+          >
+        </div>
+        <div class="menu-group">
+          <span class="helper">
+            หมวดอื่น ๆ
+          </span>
+          <a
+            href="{% url 'donate:profile' %}"
+            class="navbar-item {% if request.path == '/profile/' %} is-active {% endif %}"
+            >ประวัติส่วนตัว</a
+          >
+          <a href="{% url 'logout' %}" class="navbar-item">ออกจากระบบ</a>
+        </div>
+
+        {% else %}
+        <div class="navbar-item">
+          <span class="helper">
+            Sign in with your social account
+          </span>
+
+          <a href="{% url 'social:begin' 'facebook' %}" class="button fb-button"
+            >Sign in with Facebook</a
+          >
+        </div>
+        {% endif %}
+      </div>
+      {% block content %} {% endblock content %}
+    </div>
+  </body>
+  {% block script %} {% endblock script %}
+  <script>
+    const navbarBurger = document.getElementById("navbar-burger");
+    navbarBurger.onclick = () => {
+      const navbarBurgerMenu = document.getElementById("navbar-burger-menu");
+      navbarBurgerMenu.classList.toggle("is-active");
+    };
+  </script>
+</html>

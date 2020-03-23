@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Kanit&display=swap');
 
 *:not(i) {
-  font-family: 'Roboto', 'san serif';
+  font-family: 'Kanit', 'san serif';
 }
 
 .sidebar {

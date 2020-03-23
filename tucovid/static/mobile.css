@@ -1,0 +1,51 @@
+@media only screen and (max-width: 769px) {
+  .custom-container {
+    flex-direction: column;
+  }
+
+  .content-flex-for-mobile {
+    display: flex;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    z-index: 1;
+    padding: 4px;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .logo {
+    width: 32px;
+    height: auto;
+    margin: 0 12px;
+  }
+
+  .sidebar > .title {
+    font-size: 24px;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .navbar-menu {
+    padding: 12px;
+  }
+
+  .main-image {
+    width: 100%;
+    height: auto;
+    object-fit: unset;
+  }
+
+  #navbar-burger-menu {
+    position: absolute;
+    width: 100%;
+    top: 60px;
+  }
+}
