@@ -9,7 +9,7 @@
 
   .sidebar {
     flex-direction: row;
-    z-index: 1;
+    z-index: 100;
     padding: 4px;
   }
 
@@ -47,5 +47,6 @@
     position: absolute;
     width: 100%;
     top: 60px;
+    z-index: 10;
   }
 }
