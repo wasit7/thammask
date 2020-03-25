@@ -26,7 +26,7 @@
         <h4 class="title">Thammask system</h4>
         <div class="menu mobile-hidden">
           {% if not request.user.is_anonymous %}
-            {% if request.user.full_name %}
+            {% if request.user.first_name %}
               <div class="menu-group">
                 <span class="helper">
                   หมวดผู้บริจาค
@@ -89,7 +89,7 @@
       </div>
       <div id="navbar-burger-menu" class="navbar-menu">
         {% if not request.user.is_anonymous %}
-          {% if request.user.full_name %}
+          {% if request.user.first_name %}
             <div class="menu-group">
               <span class="helper">
                 หมวดผู้บริจาค

@@ -4,7 +4,7 @@ from .models import *
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['user', 'full_name', 'thai_citizen_id', 'date_of_birth', 'email', 'telephone', 'job', 'holding_medical_license_no', 'organization', 'tel_organization']
+        fields = ['full_name', 'address', 'email', 'telephone', 'job', 'holding_medical_license_no', 'organization']
 
 class DonateForm(ModelForm):
     class Meta:

@@ -10,17 +10,21 @@ class Item(models.Model):
     def __str__(self):
         return self.item_name
 
+class Job(models.Model):
+    job_name = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return str(self.job_name)
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     full_name = models.CharField(max_length=255)
-    thai_citizen_id = models.CharField(max_length=20)
-    date_of_birth = models.DateField()
+    address = models.TextField()
     email = models.EmailField(max_length=255)
     telephone = models.CharField(max_length=20)
-    job = models.CharField(max_length=255)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
     holding_medical_license_no = models.CharField(max_length=20, null=True, blank=True)
     organization = models.CharField(max_length=500, null=True, blank=True)
-    tel_organization = models.CharField(max_length=50, null=True, blank=True)
 
     # def save(self, req):
     #     if self.pk == None:

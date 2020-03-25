@@ -20,3 +20,7 @@ class ReceiveAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Review._meta.fields]
+
+@admin.register(Job)
+class JobAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in Job._meta.fields]
