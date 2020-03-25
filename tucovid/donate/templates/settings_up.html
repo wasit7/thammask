@@ -13,8 +13,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="full_name" {% if data.full_name != None %} value="{{ data.full_name }}" {% endif %} />
-            
+            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="full_name" {% if data.full_name != None %} value="{{ data.full_name }}" {% endif %} required />
           </div>
         </div>
       </div>
@@ -22,25 +21,12 @@
 
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">เลขบัตรประชาชน/หนังสือเดินทาง*</label>
+        <label class="label">ที่อยู่*</label>
       </div>
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น 1xxxxxxxxxxxx" name="thai_citizen_id" {% if data.thai_citizen_id != None %} value="{{ data.thai_citizen_id }}" {% endif %} />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">วัน/เดือน/ปี เกิด*</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" id="date_of_birth" placeholder="เช่น 10 January 1960" name="date_of_birth" {% if data.date_of_birth != None %} value="{{ data.date_of_birth }}" {% endif %} />
+            <textarea class="textarea" placeholder="เช่น Bangkok" name="address" required></textarea>
           </div>
         </div>
       </div>
@@ -53,7 +39,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="email" placeholder="เช่น admin@thammask.com" name="email" {% if data.email != None %} value="{{ data.email }}" {% endif %} />
+            <input class="input" type="email" placeholder="เช่น admin@thammask.com" name="email" {% if data.email != None %} value="{{ data.email }}" {% endif %} required />
           </div>
         </div>
       </div>
@@ -66,7 +52,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" {% if data.telephone != None %} value="{{ data.telephone }}" {% endif %} />
+            <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" {% if data.telephone != None %} value="{{ data.telephone }}" {% endif %} required/>
           </div>
         </div>
       </div>
@@ -74,12 +60,31 @@
 
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">อาชีพ*</label>
+        <label class="label">ชื่อโรงพยาบาล</label>
       </div>
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น Surgical Docter" name="job" {% if data.job != None %} value="{{ data.job }}" {% endif %} />
+            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="organization" {% if data.organization != None %} value="{{ data.organization }}" {% endif %} />
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">สาขาเฉพาะทาง*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <select class="input" name="job" required>
+              <option hidden value="">-----------------</option>
+              {% for job in jobs %}
+              <option value="{{ job.pk }}" {% if data.job != None %} selected {% endif %}>{{ job.job_name }}</option>
+              {% endfor %}
+            </select>
           </div>
         </div>
       </div>
@@ -87,42 +92,14 @@
 
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">เลขที่ใบประกอบวิชาชีพเวชกรรมฯ</label>
+        <label class="label">เลขวุฒิบัตร</label>
       </div>
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="holding_medical_license_no" {% if data.holding_medical_license_no != None %} value="{{ data.holding_medical_license_no }}" {% endif %} />
+            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย " - " แทนนะคะ" name="holding_medical_license_no" {% if data.holding_medical_license_no != None %} value="{{ data.holding_medical_license_no }}" {% endif %} />
           </div>
           <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">ชื่อองค์กร</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="organization" {% if data.organization != None %} value="{{ data.organization }}" {% endif %} />
-          </div>
-          
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">เบอร์โทรศัพท์ องค์กร</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="หากคุณทำงานในสาขาการแพทย์กรุณากรอกข้อมูลในช่องนี้" name="tel_organization" {% if data.tel_organization != None %} value="{{ data.tel_organization }}" {% endif %} />
-          </div>
-          
         </div>
       </div>
     </div>

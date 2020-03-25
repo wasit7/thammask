@@ -16,7 +16,6 @@ def verify_user(request):
 def profile(request):
     if request.method == 'POST':
         post_copy = request.POST.copy()
-        post_copy['date_of_birth'] = datetime.datetime.strptime(request.POST['date_of_birth'], "%d %B %Y")
         post_copy['user'] = request.user.pk
         print(post_copy)
         profile = Profile.objects.filter(user=request.user)
@@ -24,18 +23,21 @@ def profile(request):
             form = ProfileForm(post_copy, instance=Profile.objects.get(user=request.user))
         else:
             form = ProfileForm(post_copy)
+
         if form.is_valid():
             form.save()
             return redirect('donate:donate_history')
         else:
-            return render(request, 'settings_up.html')
+            jobs = Job.objects.all()
+            return render(request, 'settings_up.html', {'jobs':jobs})
     else:
         profile = Profile.objects.filter(user=request.user)
         if profile.exists():
             data = Profile.objects.get(user=request.user)
         else:
             data = ''
-        return render(request, 'settings_up.html', {'data':data})
+        jobs = Job.objects.all()
+        return render(request, 'settings_up.html', {'data':data, 'jobs':jobs})
 
 def donate_history(request):
     data = Donate.objects.filter(created_by=request.user)
