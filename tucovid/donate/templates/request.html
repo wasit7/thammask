@@ -12,7 +12,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="receiver" />
+              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="receiver" required />
             </div>
           </div>
         </div>
@@ -25,12 +25,14 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <select class="input" name="item">
-                <option hidden value="">----------------</option>
-                {% for item in items %}
-                <option value="{{ item.pk }}">{{ item.item_name }}</option>
-                {% endfor %}
-              </select>
+              <div class="select is-fullwidth">
+                <select name="item" required>
+                  <option disabled selected value="">กรุณาเลือกสิ่งของที่ต้องการขอบริจาค</option>
+                  {% for item in items %}
+                  <option value="{{ item.pk }}">{{ item.item_name }} ({{ item.unit }})</option>
+                  {% endfor %}
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -43,7 +45,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <input class="input" type="text" id="date_of_birth" placeholder="เช่น 1000" name="quantity" />
+              <input class="input" type="text" id="date_of_birth" placeholder="เช่น 1000" name="quantity" required />
             </div>
           </div>
         </div>
@@ -56,7 +58,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <textarea class="textarea" placeholder="เช่น Bangkok" name="shipping_address"></textarea>
+              <textarea class="textarea" placeholder="เช่น Bangkok" name="shipping_address" required></textarea>
             </div>
           </div>
         </div>

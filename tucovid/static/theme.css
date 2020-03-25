@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Kanit&display=swap');
 
 *:not(i) {
-  font-family: 'Roboto', 'san serif';
+  font-family: 'Kanit', 'san serif';
 }
 
 .sidebar {
@@ -47,16 +47,20 @@
 .fb-button {
   color: #ffffff;
   background-color: #3b5998;
+  display: block;
+  text-align: center;
 }
 
 .fb-button:hover {
-  background-color: #8b9dc3;
+  color: #e7e7e7;
+  background-color: #4b69a8;
 }
 
 .fb-button:before {
   content: "";
   display: block;
-  background-image: url("./assets/facebook_logo.png");
+  margin-top: 1px;
+  background-image: url("./assets/f_logo_RGB-White_1024.png");
   background-size: 20px;
   width: 20px;
   height: 20px;
