@@ -32,6 +32,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.full_name
+
     
 class Donate(models.Model):
     SHIPPING = 'Shipping'
