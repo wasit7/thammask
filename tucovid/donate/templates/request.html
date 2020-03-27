@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
   <div class="content">
-    <h4 class="title is-4 no-margin">ขอรับบริจาค</h4>
+    <h4 class="title is-4 no-margin">ขอรับบริจาคหน้ากากอนามัย</h4>
     <form action="{% url 'donate:request' %}" class="settings-up-form" method="POST">
       {% csrf_token %}
       <div class="field is-horizontal">
@@ -33,19 +33,6 @@
                   {% endfor %}
                 </select>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">จำนวน*</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <input class="input" type="text" id="date_of_birth" placeholder="เช่น 1000" name="quantity" required />
             </div>
           </div>
         </div>

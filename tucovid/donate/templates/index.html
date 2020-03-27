@@ -6,3 +6,12 @@
     <img src="{% static 'assets/23886841.png' %}" class="main-image" alt="">
   </div>
 {% endblock content %}
+
+{% block script %}
+  <script>
+    (function init() {
+      const navbarBurgerMenu = document.getElementById("navbar-burger-menu");
+      navbarBurgerMenu.classList.toggle("is-active");
+    })();
+  </script>
+{% endblock %}

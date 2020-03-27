@@ -26,7 +26,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <textarea class="textarea" placeholder="เช่น Bangkok" name="address" required></textarea>
+            <textarea class="textarea" placeholder="เช่น Bangkok" name="address" required>{% if data.address != None %}{{ data.address }}{% endif %}</textarea>
           </div>
         </div>
       </div>
@@ -97,7 +97,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย " - " แทนนะคะ" name="holding_medical_license_no" {% if data.holding_medical_license_no != None %} value="{{ data.holding_medical_license_no }}" {% endif %} />
+            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="holding_medical_license_no" {% if data.holding_medical_license_no != None %} value="{{ data.holding_medical_license_no }}" {% endif %} />
           </div>
           <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
         </div>

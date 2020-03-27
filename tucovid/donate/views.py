@@ -2,10 +2,16 @@ from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.models import User
 from .forms import *
 import datetime
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    if request.user.is_anonymous:
+        return render(request, 'index.html')
+    else:
+        return redirect('donate:check_user_exists')
+
 def verify_user(request):
     profile = Profile.objects.filter(user=request.user)
     if profile.exists():
@@ -13,6 +19,7 @@ def verify_user(request):
     else:
         return redirect('donate:profile')
 
+@login_required
 def profile(request):
     if request.method == 'POST':
         post_copy = request.POST.copy()
@@ -39,10 +46,12 @@ def profile(request):
         jobs = Job.objects.all()
         return render(request, 'settings_up.html', {'data':data, 'jobs':jobs})
 
+@login_required
 def donate_history(request):
     data = Donate.objects.filter(created_by=request.user)
     return render(request, 'donate_history.html', {'data':data})
 
+@login_required
 def donate(request):
     if request.method == 'POST':
         post_copy = request.POST.copy()
@@ -55,10 +64,12 @@ def donate(request):
         items = Item.objects.all()
         return render(request, 'donate.html', {'items':items})
 
+@login_required
 def request_history(request):
     data = Receive.objects.filter(created_by=request.user)
     return render(request, 'request_history.html', {'data':data})
 
+@login_required
 def request(request):
     if request.method == 'POST':
         post_copy = request.POST.copy()
@@ -71,5 +82,6 @@ def request(request):
         items = Item.objects.all()
         return render(request, 'request.html', {'items':items})
 
+@login_required
 def review(request):
     return render(request, 'review.html')

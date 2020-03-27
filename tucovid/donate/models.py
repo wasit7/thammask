@@ -32,6 +32,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.full_name
+
     
 class Donate(models.Model):
     SHIPPING = 'Shipping'
@@ -71,7 +72,6 @@ class Receive(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     receiver = models.CharField(max_length=255, null=True, blank=True)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    quantity = models.DecimalField(max_digits=15, decimal_places=2)
     status = models.CharField(max_length=100, choices=RECEIVE_STATUS, default=WAIT_FOR_VERIFY)
     shipping_address = models.TextField(null=True, blank=True)
     shipping_id = models.CharField(max_length=30)
