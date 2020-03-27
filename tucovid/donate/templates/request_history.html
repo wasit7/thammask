@@ -7,7 +7,6 @@
       <thead>
         <tr>
           <th width="25%">รายการ</th>
-          <th width="15%">จำนวน</th>
           <th width="25%">ที่อยู่ผู้รับ</th>
           <th width="15%">สถานะ</th>
           <th>หมายเลขติดตามพัสดุ</th>
@@ -17,7 +16,6 @@
         {% for data in data %}
         <tr>
           <td>{{ data.item }}</td>
-          <td>{{ data.quantity }} {{ data.item.unit }}</td>
           <td>{{ data.shipping_address }}</td>
           <td>{{ data.status }}</td>
           <td>{{ data.shipping_id }}</td>
