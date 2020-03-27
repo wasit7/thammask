@@ -38,11 +38,11 @@ def profile(request):
             jobs = Job.objects.all()
             return render(request, 'settings_up.html', {'jobs':jobs})
     else:
-        # profile = Profile.objects.filter(user=request.user)
-        # if profile.exists():
-        #     data = Profile.objects.get(user=request.user)
-        # else:
-        data = ''
+        profile = Profile.objects.filter(user=request.user)
+        if profile.exists():
+            data = Profile.objects.get(user=request.user)
+        else:
+            data = ''
         jobs = Job.objects.all()
         return render(request, 'settings_up.html', {'data':data, 'jobs':jobs})
 
