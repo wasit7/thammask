@@ -14,4 +14,4 @@ class DonateForm(ModelForm):
 class ReceiveForm(ModelForm):
     class Meta:
         model = Receive
-        fields = ['created_by', 'receiver', 'item', 'quantity', 'shipping_address', 'note']
+        fields = ['created_by', 'receiver', 'item', 'shipping_address', 'note']
