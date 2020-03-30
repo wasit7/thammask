@@ -3,7 +3,7 @@
 
 {% block content %}
   <div class="content">
-    <p class="page-header">
+    <p class="page-header"></p>
       <a href="{% url 'donate:home' %}" class="navigator">
         <span class="">Home</span>
       {% if data.nav.0 %}
@@ -14,6 +14,10 @@
         {% endfor %}
       {% endif %}
     </p>
+    <hr>
+    <br>
+    <h4 class="title is-4 no-margin"><a href="https://taejai.com/th/d/thammask/" target="_blank">ร่วมบริจาคเงินสมทบทุน</a></h4>
+    <hr>
     <h4 class="title is-4 no-margin">บริจาคสิ่งของ</h4>
     <form action="" class="settings-up-form" method="POST">
       {% csrf_token %}

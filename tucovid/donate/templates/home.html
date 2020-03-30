@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+    <p class="page-header">
+        <a href="{% url 'donate:home' %}" class="navigator">
+        <span class="">Home</span>
+        {% if data.nav.0 %}
+            </a> <span class="color-white">/</span>
+            {% for d in  data.nav.0 %}
+                <a href="{{ d.url }}" class="navigator">
+                    <span class="">{{ d.page }}</span>
+            {% endfor %}
+        {% endif %}
+    </p>
+    <a class="button is-info" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
+    <a class="button is-info" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
+</div>
+<div class="content">
+    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthammaskformed%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=604052317110535" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+</div>
+{% endblock %}

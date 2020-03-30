@@ -19,7 +19,7 @@ def home(request):
 def verify_user(request):
     profile = Profile.objects.filter(user=request.user)
     if profile.exists():
-        return redirect('donate:donate')
+        return redirect('donate:home')
     else:
         return redirect('donate:profile')
 
@@ -37,7 +37,7 @@ def profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect('donate:donate_history')
+            return redirect('donate:home')
         else:
             jobs = Job.objects.all()
             return render(request, 'settings_up.html', {'jobs':jobs})
@@ -71,7 +71,7 @@ def donate(request):
         data['nav'] = ({
             '0': [
                 {
-                    'page':"donate",
+                    'page':"บริจาค",
                     'url':reverse('donate:donate')
                 }
             ]
@@ -94,7 +94,16 @@ def request(request):
             return redirect('donate:request')
     else:
         item = Item.objects.get(item_name='หน้ากากอนามัย')
-        data = Receive.objects.filter(created_by=request.user)
+        data = dict()
+        data['receive'] = Receive.objects.filter(created_by=request.user)
+        data['nav'] = ({
+            '0': [
+                {
+                    'page':"ขอรับบริจาค",
+                    'url':reverse('donate:request')
+                }
+            ]
+        })
         return render(request, 'request.html', {'item':item, 'data':data})
 
 @login_required

@@ -25,7 +25,6 @@
           <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="" />
         </div>
         <h4 class="title">Thammask system</h4>
-        
         <div class="menu mobile-hidden">
           {% if not request.user.is_anonymous %}
             {% if request.user.pk|get_full_name != None %}
@@ -43,9 +42,9 @@
                   class="menu-item {% if request.path == '/donate/' %} is-active {% endif %}"
                   >บริจาคสิ่งของ</a
                 >
-                <a href="https://taejai.com/th/d/thammask/" class="menu-item" target="_blank"
+                <!-- <a href="https://taejai.com/th/d/thammask/" class="menu-item" target="_blank"
                   >บริคจาคเงินสมทบทุน</a
-                >
+                > -->
               </div>
               <div class="menu-group">
                 <span class="helper">
@@ -106,9 +105,9 @@
                 class="navbar-item {% if request.path == '/donate/' %} is-active {% endif %}"
                 >บริจาคสิ่งของ</a
               >
-              <a href="https://taejai.com/th/d/thammask/" class="navbar-item" target="_blank"
+              <!-- <a href="https://taejai.com/th/d/thammask/" class="navbar-item" target="_blank"
                 >บริคจาคเงินสมทบทุน</a
-              >
+              > -->
             </div>
 
             <div class="menu-group">

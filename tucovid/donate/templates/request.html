@@ -2,6 +2,19 @@
 {% load static %}
 {% block content %}
   <div class="content">
+    <p class="page-header">
+      <a href="{% url 'donate:home' %}" class="navigator">
+        <span class="">Home</span>
+      {% if data.nav.0 %}
+        </a> <span class="color-white">/</span>
+        {% for d in  data.nav.0 %}
+          <a href="{{ d.url }}" class="navigator">
+            <span class="">{{ d.page }}</span>
+        {% endfor %}
+      {% endif %}
+    </p>
+    <hr>
+    <br>
     <h4 class="title is-4 no-margin">ขอรับบริจาคหน้ากากอนามัย</h4>
     <form action="{% url 'donate:request' %}" class="settings-up-form" method="POST">
       {% csrf_token %}
@@ -87,7 +100,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for data in data %}
+        {% for data in data.receive %}
         <tr>
           <td>{{ data.item }}</td>
           <td>{{ data.shipping_address }}</td>
