@@ -14,11 +14,34 @@
         {% endif %}
     </p>
     <div class="mobile-only">
-        <a class="button is-info" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
-        <a class="button is-info" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
+        <a class="button is-info mobile-fullwidth" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
+        <a class="button is-info mobile-fullwidth" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
     </div>
+    <iframe
+        id="facebook-iframe"
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthammaskformed%2F&tabs=timeline&width=500&height=450&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1446897052087767"
+        width="500"
+        height="450"
+        style="border:none;overflow:hidden"
+        scrolling="no"
+        frameborder="0"
+        allowTransparency="true"
+    ></iframe>
 </div>
-<div class="content">
-    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthammaskformed%2F&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1446897052087767" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    const initIFrameWidth = () => {
+        const { width } = window.screen;
+
+        if (width < 500) {
+            let iFrame = document.getElementById("facebook-iframe");
+            iFrame.src = iFrame.src.replace("500", `${width - 48}`);
+            iFrame.width = `${width - 48}`;
+        }
+    };
+
+    initIFrameWidth();
+</script>
 {% endblock %}

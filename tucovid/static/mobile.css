@@ -67,4 +67,9 @@
     width: auto;
     height: auto;
   }
+
+  .mobile-fullwidth {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }
