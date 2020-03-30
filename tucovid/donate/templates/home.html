@@ -13,10 +13,12 @@
             {% endfor %}
         {% endif %}
     </p>
-    <a class="button is-info" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
-    <a class="button is-info" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
+    <div class="mobile-only">
+        <a class="button is-info" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
+        <a class="button is-info" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
+    </div>
 </div>
 <div class="content">
-    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthammaskformed%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId=604052317110535" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthammaskformed%2F&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1446897052087767" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
 </div>
 {% endblock %}
