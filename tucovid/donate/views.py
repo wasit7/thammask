@@ -67,7 +67,7 @@ def donate(request):
     else:
         items = DonateItem.objects.all()
         data = dict()
-        data['donate'] = Donate.objects.filter(created_by=request.user)
+        data['donate'] = Donate.objects.filter(created_by=request.user).order_by('-id')
         data['nav'] = ({
             '0': [
                 {
@@ -90,12 +90,16 @@ def request(request):
         post_copy['created_by'] = request.user.pk
         form = ReceiveForm(post_copy)
         if form.is_valid():
+            print('aaaaaaaaaaaaaaaaaaaaaaaaaaaa')
             form.save()
             return redirect('donate:request')
+        else:
+            print('-----------------form valid----------------')
+            print(form)
     else:
-        item = Item.objects.first()
+        items = Item.objects.all()
         data = dict()
-        data['receive'] = Receive.objects.filter(created_by=request.user)
+        data['receive'] = Receive.objects.filter(created_by=request.user).order_by('-id')
         data['nav'] = ({
             '0': [
                 {
@@ -104,7 +108,7 @@ def request(request):
                 }
             ]
         })
-        return render(request, 'request.html', {'item':item, 'data':data})
+        return render(request, 'request.html', {'items':items, 'data':data})
 
 @login_required
 def review(request):
