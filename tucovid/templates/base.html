@@ -25,6 +25,7 @@
           <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="" />
         </div>
         <h4 class="title">Thammask system</h4>
+        
         <div class="menu mobile-hidden">
           {% if not request.user.is_anonymous %}
             {% if request.user.pk|get_full_name != None %}
@@ -32,11 +33,11 @@
                 <span class="helper">
                   หมวดผู้บริจาค
                 </span>
-                <a
+                <!-- <a
                   href="{% url 'donate:donate_history' %}"
                   class="menu-item {% if request.path == '/donate_history/' %} is-active {% endif %}"
                   >ประวัติการบริจาค</a
-                >
+                > -->
                 <a
                   href="{% url 'donate:donate' %}"
                   class="menu-item {% if request.path == '/donate/' %} is-active {% endif %}"
@@ -50,15 +51,15 @@
                 <span class="helper">
                   หมวดผู้ขอรับบริจาค
                 </span>
-                <a
+                <!-- <a
                   href="{% url 'donate:request_history' %}"
                   class="menu-item {% if request.path == '/request_history/' %} is-active {% endif %}"
                   >ประวัติการขอรับบริจาค</a
-                >
+                > -->
                 <a
                   href="{% url 'donate:request' %}"
                   class="menu-item {% if request.path == '/request/' %} is-active {% endif %}"
-                  >ขอรับบริจาคหน้ากากอนามัย</a
+                  >ขอรับหน้ากากอนามัย</a
                 >
               </div>
               <div class="menu-group">
@@ -68,7 +69,7 @@
                 <a
                   href="{% url 'donate:profile' %}"
                   class="menu-item {% if request.path == '/profile/' %} is-active {% endif %}"
-                  >ประวัติส่วนตัว</a
+                  >ข้อมูลส่วนตัว</a
                 >
                 <a href="{% url 'logout' %}" class="menu-item">ออกจากระบบ</a>
               </div>
@@ -95,11 +96,11 @@
               <span class="helper">
                 หมวดผู้บริจาค
               </span>
-              <a
+              <!-- <a
                 href="{% url 'donate:donate_history' %}"
                 class="navbar-item {% if request.path == '/donate_history/' %} is-active {% endif %}"
                 >ประวัติการบริจาค</a
-              >
+              > -->
               <a
                 href="{% url 'donate:donate' %}"
                 class="navbar-item {% if request.path == '/donate/' %} is-active {% endif %}"
@@ -114,15 +115,15 @@
               <span class="helper">
                 หมวดผู้ขอรับบริจาค
               </span>
-              <a
+              <!-- <a
                 href="{% url 'donate:request_history' %}"
                 class="navbar-item {% if request.path == '/request_history/' %} is-active {% endif %}"
                 >ประวัติการขอรับบริจาค</a
-              >
+              > -->
               <a
                 href="{% url 'donate:request' %}"
                 class="navbar-item {% if request.path == '/request/' %} is-active {% endif %}"
-                >ขอรับบริจาคหน้ากากอนามัย</a
+                >ขอรับหน้ากากอนามัย</a
               >
             </div>
             <div class="menu-group">
@@ -132,7 +133,7 @@
               <a
                 href="{% url 'donate:profile' %}"
                 class="navbar-item {% if request.path == '/profile/' %} is-active {% endif %}"
-                >ประวัติส่วนตัว</a
+                >ข้อมูลส่วนตัว</a
               >
               <a href="{% url 'logout' %}" class="navbar-item">ออกจากระบบ</a>
             </div>
@@ -149,7 +150,7 @@
         </div>
         {% endif %}
       </div>
-      {% block content %} {% endblock content %}
+      {% block content %}{% endblock content %}
     </div>
   </body>
   {% block script %} {% endblock script %}
