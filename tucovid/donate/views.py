@@ -4,6 +4,7 @@ from .forms import *
 import datetime
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 # Create your views here.
 def index(request):
@@ -12,10 +13,13 @@ def index(request):
     else:
         return redirect('donate:check_user_exists')
 
+def home(request):
+    return render(request, 'home.html')
+
 def verify_user(request):
     profile = Profile.objects.filter(user=request.user)
     if profile.exists():
-        return redirect('donate:donate_history')
+        return redirect('donate:home')
     else:
         return redirect('donate:profile')
 
@@ -33,7 +37,7 @@ def profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect('donate:donate_history')
+            return redirect('donate:home')
         else:
             jobs = Job.objects.all()
             return render(request, 'settings_up.html', {'jobs':jobs})
@@ -59,10 +63,20 @@ def donate(request):
         form = DonateForm(post_copy)
         if form.is_valid():
             form.save()
-            return redirect('donate:donate_history')
+            return redirect('donate:donate')
     else:
-        items = Item.objects.all()
-        return render(request, 'donate.html', {'items':items})
+        items = DonateItem.objects.all()
+        data = dict()
+        data['donate'] = Donate.objects.filter(created_by=request.user)
+        data['nav'] = ({
+            '0': [
+                {
+                    'page':"บริจาค",
+                    'url':reverse('donate:donate')
+                }
+            ]
+        })
+        return render(request, 'donate.html', {'items':items, 'data':data})
 
 @login_required
 def request_history(request):
@@ -77,10 +91,20 @@ def request(request):
         form = ReceiveForm(post_copy)
         if form.is_valid():
             form.save()
-            return redirect('donate:request_history')
+            return redirect('donate:request')
     else:
-        items = Item.objects.all()
-        return render(request, 'request.html', {'items':items})
+        item = Item.objects.first()
+        data = dict()
+        data['receive'] = Receive.objects.filter(created_by=request.user)
+        data['nav'] = ({
+            '0': [
+                {
+                    'page':"ขอรับบริจาค",
+                    'url':reverse('donate:request')
+                }
+            ]
+        })
+        return render(request, 'request.html', {'item':item, 'data':data})
 
 @login_required
 def review(request):

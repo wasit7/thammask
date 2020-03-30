@@ -2,6 +2,20 @@
 {% load static %}
 {% block content %}
   <div class="content">
+    <p class="page-header">
+      <a href="{% url 'donate:home' %}" class="navigator">
+        <span class="">Home</span>
+      {% if data.nav.0 %}
+        </a> <span class="color-white">/</span>
+        {% for d in data.nav.0 %}
+          <a href="{{ d.url }}" class="navigator">
+            <span class="">{{ d.page }}</span>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </p>
+    <hr>
+    <br>
     <h4 class="title is-4 no-margin">ขอรับบริจาคหน้ากากอนามัย</h4>
     <form action="{% url 'donate:request' %}" class="settings-up-form" method="POST">
       {% csrf_token %}
@@ -26,11 +40,8 @@
           <div class="field">
             <div class="control">
               <div class="select is-fullwidth">
-                <select name="item" required>
-                  <option disabled selected value="">กรุณาเลือกสิ่งของที่ต้องการขอบริจาค</option>
-                  {% for item in items %}
+                <select name="item" required disabled>
                   <option value="{{ item.pk }}">{{ item.item_name }} ({{ item.unit }})</option>
-                  {% endfor %}
                 </select>
               </div>
             </div>
@@ -77,5 +88,28 @@
         </div>
       </div>
     </form>
+    <br>
+    <hr>
+    <h4 class="title is-4 no-margin">ประวัติการขอรับบริจาค</h4>
+    <table class="table is-fullwidth is-striped margin-top">
+      <thead>
+        <tr>
+          <th width="25%">รายการ</th>
+          <th width="25%">ที่อยู่ผู้รับ</th>
+          <th width="15%">สถานะ</th>
+          <th>หมายเลขติดตามพัสดุ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in data.receive %}
+        <tr>
+          <td>{{ data.item }}</td>
+          <td>{{ data.shipping_address }}</td>
+          <td>{{ data.status }}</td>
+          <td>{{ data.shipping_id }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 {% endblock content %}

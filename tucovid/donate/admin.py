@@ -24,3 +24,7 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Job._meta.fields]
+
+@admin.register(DonateItem)
+class DonateItemAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in DonateItem._meta.fields]

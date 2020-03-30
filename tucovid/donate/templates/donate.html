@@ -1,9 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
   <div class="content">
+    <p class="page-header"></p>
+      <a href="{% url 'donate:home' %}" class="navigator">
+        <span class="">Home</span>
+      {% if data.nav.0 %}
+        </a> <span class="color-white">/</span>
+        {% for d in  data.nav.0 %}
+          <a href="{{ d.url }}" class="navigator">
+            <span class="">{{ d.page }}</span>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </p>
+    <hr>
+    <br>
+    <h4 class="title is-4 no-margin"><a href="https://taejai.com/th/d/thammask/" target="_blank">ร่วมบริจาคเงินสมทบทุน</a></h4>
+    <hr>
     <h4 class="title is-4 no-margin">บริจาคสิ่งของ</h4>
-    <form action="{% url 'donate:donate' %}" class="settings-up-form" method="POST">
+    <form action="" class="settings-up-form" method="POST">
       {% csrf_token %}
       <div class="field is-horizontal">
         <div class="field-label is-normal">
@@ -29,7 +46,7 @@
                 <select name="item" required>
                   <option disabled selected value="">กรุณาเลือกสิ่งของที่ต้องการบริจาค</option>
                   {% for item in items %}
-                  <option value="{{ item.pk }}">{{ item.item_name }} ({{ item.unit }})</option>
+                  <option value="{{ item.pk }}">{{ item.donate_item_name }} ({{ item.unit }})</option>
                   {% endfor %}
                 </select>
               </div>
@@ -90,5 +107,30 @@
         </div>
       </div>
     </form>
+    <br>
+    <hr>
+    <h4 class="title is-4 no-margin">ประวัติการบริจาค</h4>
+    <table class="table is-fullwidth is-striped margin-top">
+      <thead>
+        <tr>
+          <th width="30%">รายการ</th>
+          <th width="15%">จำนวน</th>
+          <th width="15%">สถานะ</th>
+          <th width="20%">หมายเลขติดตามพัสดุ</th>
+          <th>หมายเหตุ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in data.donate %}
+        <tr>
+          <td>{{ data.item }}</td>
+          <td>{{ data.quantity }}</td>
+          <td>{{ data.status }}</td>
+          <td>{{ data.shipping_id }}</td>
+          <td>{{ data.note }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 {% endblock content %}

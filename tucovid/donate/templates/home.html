@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="content">
+    <p class="page-header">
+        <a href="{% url 'donate:home' %}" class="navigator">
+        <span class="">Home</span>
+        {% if data.nav.0 %}
+            </a> <span class="color-white">/</span>
+            {% for d in  data.nav.0 %}
+                <a href="{{ d.url }}" class="navigator">
+                    <span class="">{{ d.page }}</span>
+            {% endfor %}
+        {% endif %}
+    </p>
+    <div class="mobile-only">
+        <a class="button is-info mobile-fullwidth" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
+        <a class="button is-info mobile-fullwidth" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
+    </div>
+    <iframe
+        id="facebook-iframe"
+        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthammaskformed%2F&tabs=timeline&width=500&height=450&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1446897052087767"
+        width="500"
+        height="450"
+        style="border:none;overflow:hidden"
+        scrolling="no"
+        frameborder="0"
+        allowTransparency="true"
+    ></iframe>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    const initIFrameWidth = () => {
+        const { width } = window.screen;
+
+        if (width < 500) {
+            let iFrame = document.getElementById("facebook-iframe");
+            iFrame.src = iFrame.src.replace("500", `${width - 48}`);
+            iFrame.width = `${width - 48}`;
+        }
+    };
+
+    initIFrameWidth();
+</script>
+{% endblock %}
