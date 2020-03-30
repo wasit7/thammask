@@ -65,7 +65,7 @@ def donate(request):
             form.save()
             return redirect('donate:donate')
     else:
-        items = Item.objects.all()
+        items = DonateItem.objects.all()
         data = dict()
         data['donate'] = Donate.objects.filter(created_by=request.user)
         data['nav'] = ({
@@ -93,7 +93,7 @@ def request(request):
             form.save()
             return redirect('donate:request')
     else:
-        item = Item.objects.get(item_name='หน้ากากอนามัย')
+        item = Item.objects.first()
         data = dict()
         data['receive'] = Receive.objects.filter(created_by=request.user)
         data['nav'] = ({

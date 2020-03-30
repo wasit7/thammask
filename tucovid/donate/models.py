@@ -2,6 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+class DonateItem(models.Model):
+    donate_item_name = models.CharField(max_length=255)
+    quantity = models.DecimalField(max_digits=15, decimal_places=2)
+    unit = models.CharField(max_length=50)    
+
+    def __str__(self):
+        return str(self.donate_item_name)
+
 class Item(models.Model):
     item_name = models.CharField(max_length=255)
     quantity = models.DecimalField(max_digits=15, decimal_places=2)
@@ -46,7 +54,7 @@ class Donate(models.Model):
 
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     donator = models.CharField(max_length=255, null=True, blank=True)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.ForeignKey(DonateItem, on_delete=models.CASCADE)
     quantity = models.DecimalField(max_digits=15, decimal_places=2)
     status = models.CharField(max_length=100, choices=DONATE_STATUS, default=SHIPPING)
     shipping_id = models.CharField(max_length=30, null=True, blank=True)

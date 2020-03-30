@@ -45,7 +45,7 @@
                 <select name="item" required>
                   <option disabled selected value="">กรุณาเลือกสิ่งของที่ต้องการบริจาค</option>
                   {% for item in items %}
-                  <option value="{{ item.pk }}">{{ item.item_name }} ({{ item.unit }})</option>
+                  <option value="{{ item.pk }}">{{ item.donate_item_name }} ({{ item.unit }})</option>
                   {% endfor %}
                 </select>
               </div>
