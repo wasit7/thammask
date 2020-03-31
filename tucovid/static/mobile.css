@@ -71,5 +71,12 @@
   .mobile-fullwidth {
     width: 100%;
     margin-bottom: 1rem;
+    background-color: #fae2d6;
+  }
+
+  .mobile-fullwidth:hover {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: #f3806b;
   }
 }
