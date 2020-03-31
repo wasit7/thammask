@@ -73,6 +73,11 @@ body, html {
   min-width: fit-content;
 }
 
+.taejai {
+  display: grid;
+  grid-template-columns: 100px 1100px;
+}
+
 .margin-top {
   margin-top: 24px;
 }
