@@ -22,39 +22,20 @@
     <div class="custom-container">
       <div class="sidebar">
         <div class="logo">
-          <img src="{% static 'assets/Thammasat_main_logo.png' %}" alt="" />
+          <img src="{% static 'assets/logo-thammask.png' %}" alt="" />
         </div>
         <h4 class="title">Thammask system</h4>
         <div class="menu mobile-hidden">
           {% if not request.user.is_anonymous %}
             {% if request.user.pk|get_full_name != None %}
               <div class="menu-group">
-                <span class="helper">
-                  หมวดผู้บริจาค
-                </span>
-                <!-- <a
-                  href="{% url 'donate:donate_history' %}"
-                  class="menu-item {% if request.path == '/donate_history/' %} is-active {% endif %}"
-                  >ประวัติการบริจาค</a
-                > -->
                 <a
                   href="{% url 'donate:donate' %}"
                   class="menu-item {% if request.path == '/donate/' %} is-active {% endif %}"
                   >บริจาคสิ่งของ</a
                 >
-                <!-- <a href="https://taejai.com/th/d/thammask/" class="menu-item" target="_blank"
-                  >บริคจาคเงินสมทบทุน</a
-                > -->
               </div>
               <div class="menu-group">
-                <span class="helper">
-                  หมวดผู้ขอรับบริจาค
-                </span>
-                <!-- <a
-                  href="{% url 'donate:request_history' %}"
-                  class="menu-item {% if request.path == '/request_history/' %} is-active {% endif %}"
-                  >ประวัติการขอรับบริจาค</a
-                > -->
                 <a
                   href="{% url 'donate:request' %}"
                   class="menu-item {% if request.path == '/request/' %} is-active {% endif %}"
@@ -62,15 +43,11 @@
                 >
               </div>
               <div class="menu-group">
-                <span class="helper">
-                  หมวดอื่น ๆ
-                </span>
                 <a
                   href="{% url 'donate:profile' %}"
                   class="menu-item {% if request.path == '/profile/' %} is-active {% endif %}"
                   >ข้อมูลส่วนตัว</a
                 >
-                <a href="{% url 'logout' %}" class="menu-item">ออกจากระบบ</a>
               </div>
             {% endif %}
           {% else %}
@@ -92,33 +69,14 @@
         {% if not request.user.is_anonymous %}
           {% if request.user.pk|get_full_name != None %}
             <div class="menu-group">
-              <span class="helper">
-                หมวดผู้บริจาค
-              </span>
-              <!-- <a
-                href="{% url 'donate:donate_history' %}"
-                class="navbar-item {% if request.path == '/donate_history/' %} is-active {% endif %}"
-                >ประวัติการบริจาค</a
-              > -->
               <a
                 href="{% url 'donate:donate' %}"
                 class="navbar-item {% if request.path == '/donate/' %} is-active {% endif %}"
                 >บริจาคสิ่งของ</a
               >
-              <!-- <a href="https://taejai.com/th/d/thammask/" class="navbar-item" target="_blank"
-                >บริคจาคเงินสมทบทุน</a
-              > -->
             </div>
 
             <div class="menu-group">
-              <span class="helper">
-                หมวดผู้ขอรับบริจาค
-              </span>
-              <!-- <a
-                href="{% url 'donate:request_history' %}"
-                class="navbar-item {% if request.path == '/request_history/' %} is-active {% endif %}"
-                >ประวัติการขอรับบริจาค</a
-              > -->
               <a
                 href="{% url 'donate:request' %}"
                 class="navbar-item {% if request.path == '/request/' %} is-active {% endif %}"
@@ -126,15 +84,11 @@
               >
             </div>
             <div class="menu-group">
-              <span class="helper">
-                หมวดอื่น ๆ
-              </span>
               <a
                 href="{% url 'donate:profile' %}"
                 class="navbar-item {% if request.path == '/profile/' %} is-active {% endif %}"
                 >ข้อมูลส่วนตัว</a
               >
-              <a href="{% url 'logout' %}" class="navbar-item">ออกจากระบบ</a>
             </div>
           {% endif %}
         {% else %}

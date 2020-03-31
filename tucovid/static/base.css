@@ -61,6 +61,18 @@ body, html {
   min-width: fit-content;
 }
 
+.home {
+  font-family: 'Kanit', 'san serif';
+  color: #707070;
+  max-width: 800px;
+  min-width: fit-content;
+}
+
+.home_img {
+  max-width: 250px;
+  min-width: fit-content;
+}
+
 .margin-top {
   margin-top: 24px;
 }
@@ -94,7 +106,7 @@ body, html {
 }
 
 .menu-item.is-active {
-  background-color: #c1e9f8;
+  background-color: #f3806b;
 }
 
 .likert-scale {
