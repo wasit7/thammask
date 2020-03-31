@@ -17,31 +17,16 @@
         <a class="button is-info mobile-fullwidth" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
         <a class="button is-info mobile-fullwidth" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
     </div>
-    <iframe
-        id="facebook-iframe"
-        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fthammaskformed%2F&tabs=timeline&width=500&height=450&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1446897052087767"
-        width="500"
-        height="450"
-        style="border:none;overflow:hidden"
-        scrolling="no"
-        frameborder="0"
-        allowTransparency="true"
-    ></iframe>
+    <p class="home">หน้ากากสะท้อนน้ำ (ThamMask)
+        เป็นหน้ากากที่พัฒนาโดยทีมนักวิจัยจากมหาวิทยาลัยธรรมศาสตร์ โดยความมุ่งหวังเพื่อเป็นหน้ากากทางเลือกสำหรับบุคลากรทางการแพทย์ (medical personnel grade)
+        ป้องกันการแพร่กระจายของเชื้อโรคผ่านการจาม ไอ เหมาะสำหรับบุคคลากรทางการแพทย์ที่ไม่ได้สัมผัสโดยตรงกับผู้ป่วยที่ติดเชื้อ COVID-19 เพื่อใช้ตรวจคนใช้ทั่วไป ผู้ที่ปฏิบัติงานในพื้นที่เสี่ยง และประชาชนที่มีความเสี่ยงในการพบปะผู้คนจำนวนมากและป้องกันการระบาดของโรคอีกด้วย
+        โดยที่ผ่านมาพบปัญหาการขาดแคลนหน้ากาก Thammask จะช่วยแก้ปัญาหาตรงนี้ได้ด้วยการใช้ซ้ำได้มากกว่า 30 ครั้ง ลดการสร้างขยะได้อีกด้วย</p>
+    <div class="home_img"> 
+        <img style="width: 300px;" src="{% static 'assets/thammask.jpg' %}" alt="" />
+        <img style="width: 300px;" src="{% static 'assets/thammask2_720.jpg' %}" alt="" /><br>
+        <img style="width: 300px;" src="{% static 'assets/thammask3.jpg' %}" alt="" />
+        <img style="width: 300px;" src="{% static 'assets/thammask4_720.jpg' %}" alt="" />
+    </div>
+    
 </div>
-{% endblock %}
-
-{% block script %}
-<script>
-    const initIFrameWidth = () => {
-        const { width } = window.screen;
-
-        if (width < 500) {
-            let iFrame = document.getElementById("facebook-iframe");
-            iFrame.src = iFrame.src.replace("500", `${width - 48}`);
-            iFrame.width = `${width - 48}`;
-        }
-    };
-
-    initIFrameWidth();
-</script>
 {% endblock %}

@@ -5,7 +5,7 @@
 }
 
 .sidebar {
-  background-color: #edf8fc;
+  background-color: #fae2d6;
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.29);
 }
 
@@ -68,12 +68,12 @@
 }
 
 .button.is-primary {
-  background-color: #edf8fc;
+  background-color: #fae2d6;
   color: #707070;
 }
 
 .button.is-primary:hover {
-  background-color: #c1e9f8;
+  background-color: #f3806b;
   color: #646464;
 }
 
