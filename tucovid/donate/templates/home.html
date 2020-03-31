@@ -2,29 +2,14 @@
 {% load static %}
 {% block content %}
 <div class="content">
-    <p class="page-header">
-        <a href="{% url 'donate:home' %}" class="navigator">
-        <span class="">Home</span>
-        {% if data.nav.0 %}
-            </a> <span class="color-white">/</span>
-            {% for d in  data.nav.0 %}
-                <a href="{{ d.url }}" class="navigator">
-                    <span class="">{{ d.page }}</span>
-            {% endfor %}
-        {% endif %}
-    </p>
     <div class="mobile-only">
         <a class="button is-info mobile-fullwidth" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
         <a class="button is-info mobile-fullwidth" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
     </div>
+    <center><img style="width: 400px;" src="{% static 'assets/thammask4_720.jpg' %}" alt="" /></center><br>
     <p class="home">หน้ากากสะท้อนน้ำ (ThamMask)
         เป็นหน้ากากที่พัฒนาโดยทีมนักวิจัยจากมหาวิทยาลัยธรรมศาสตร์ โดยความมุ่งหวังเพื่อเป็นหน้ากากทางเลือกสำหรับบุคลากรทางการแพทย์ (medical personnel grade)
         ป้องกันการแพร่กระจายของเชื้อโรคผ่านการจาม ไอ เหมาะสำหรับบุคคลากรทางการแพทย์ที่ไม่ได้สัมผัสโดยตรงกับผู้ป่วยที่ติดเชื้อ COVID-19 เพื่อใช้ตรวจคนใช้ทั่วไป ผู้ที่ปฏิบัติงานในพื้นที่เสี่ยง และประชาชนที่มีความเสี่ยงในการพบปะผู้คนจำนวนมากและป้องกันการระบาดของโรคอีกด้วย
-        โดยที่ผ่านมาพบปัญหาการขาดแคลนหน้ากาก Thammask จะช่วยแก้ปัญาหาตรงนี้ได้ด้วยการใช้ซ้ำได้มากกว่า 30 ครั้ง ลดการสร้างขยะได้อีกด้วย</p>
-    <div class="home_img"> 
-        <img style="width: 400px;" src="{% static 'assets/thammask.jpg' %}" alt="" />
-        <img style="width: 400px;" src="{% static 'assets/thammask2_720.jpg' %}" alt="" /><br>
-    </div>
-    
+        โดยที่ผ่านมาพบปัญหาการขาดแคลนหน้ากาก Thammask จะช่วยแก้ปัญาหาตรงนี้ได้ด้วยการใช้ซ้ำได้มากกว่า 30 ครั้ง ลดการสร้างขยะได้อีกด้วย</p>    
 </div>
 {% endblock %}
