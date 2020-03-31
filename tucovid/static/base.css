@@ -75,7 +75,7 @@ body, html {
 
 .taejai {
   display: grid;
-  grid-template-columns: 100px 1100px;
+  grid-template-columns: 100px 300px;
 }
 
 .margin-top {

@@ -94,16 +94,14 @@
     <br>
     <hr>
     <h4 class="title is-4 no-margin">ประวัติการขอรับบริจาค</h4>
-    <table class="table is-fullwidth is-striped margin-top">
-      <thead>
+    <div class="table-container">
+      <table class="table is-fullwidth is-striped margin-top">
         <tr>
           <th width="25%">รายการ</th>
           <th width="25%">ที่อยู่ผู้รับ</th>
           <th width="15%">สถานะ</th>
           <th>หมายเลขติดตามพัสดุ</th>
         </tr>
-      </thead>
-      <tbody>
         {% for data in data.receive %}
         <tr>
           <td>{{ data.item }}</td>
@@ -112,7 +110,7 @@
           <td>{{ data.shipping_id }}</td>
         </tr>
         {% endfor %}
-      </tbody>
-    </table>
+      </table>
+    </div>
   </div>
 {% endblock content %}

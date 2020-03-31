@@ -19,7 +19,7 @@
     <br>
     <div class="taejai">
       <img src="{% static 'assets/tae-jai.png' %}">
-      <h6 style="margin-top: 30px; margin-left: 20px;"><a href="https://taejai.com/th/d/thammask/" target="_blank">ร่วมบริจาคเงินสมทบทุน (คลิ้ก)</a></h6>
+      <h6 class="control" style="margin-top: 30px; margin-left: 20px;"><a href="https://taejai.com/th/d/thammask/" target="_blank">ร่วมบริจาคเงินสมทบทุน (คลิ้ก)</a></h6>
     </div>
     <hr>
     <h4 class="title is-4 no-margin">บริจาคสิ่งของ</h4>
@@ -113,8 +113,8 @@
     <br>
     <hr>
     <h4 class="title is-4 no-margin">ประวัติการบริจาค</h4>
-    <table class="table is-fullwidth is-striped margin-top">
-      <thead>
+    <div class="table-container">
+      <table class="table is-fullwidth is-striped margin-top">
         <tr>
           <th width="30%">รายการ</th>
           <th width="15%">จำนวน</th>
@@ -122,8 +122,6 @@
           <th width="20%">หมายเลขติดตามพัสดุ</th>
           <th>หมายเหตุ</th>
         </tr>
-      </thead>
-      <tbody>
         {% for data in data.donate %}
         <tr>
           <td>{{ data.item }}</td>
@@ -133,7 +131,7 @@
           <td>{{ data.note }}</td>
         </tr>
         {% endfor %}
-      </tbody>
-    </table>
+      </table>
+    </div>
   </div>
 {% endblock content %}
