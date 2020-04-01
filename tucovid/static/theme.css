@@ -68,13 +68,23 @@
 }
 
 .button.is-primary {
+  background-color: #31bda1;
+  color: #ffffff;
+}
+
+.button.is-primary:hover {
+  background-color: #2d9984;
+  color: #ffffff;
+}
+
+.button.logout {
   background-color: #fae2d6;
   color: #707070;
 }
 
-.button.is-primary:hover {
-  background-color: #f3806b;
-  color: #646464;
+.button.logout:hover {
+  background-color: #f79a8a;
+  color: #707070;
 }
 
 .is-recieved {

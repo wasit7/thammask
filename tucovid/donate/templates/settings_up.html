@@ -3,6 +3,21 @@
 
 {% block content %}
 <div class="content">
+  <p class="page-header">
+    <a href="{% url 'donate:home' %}" class="navigator">
+      <span class="">Home</span>
+    {% if data.nav.0 %}
+      </a> <span class="color-white">/</span>
+      {% for d in data.nav.0 %}
+        <a href="{{ d.url }}" class="navigator">
+          <span class="">{{ d.page }}</span>
+        </a>
+      {% endfor %}
+    {% endif %}
+  </p>
+  <hr>
+  <br>
+  {{ data.profile.get_absolute_url }}
   <h4 class="title is-4 no-margin">ประวัติส่วนตัว</h4>
   <form action="{% url 'donate:profile' %}" class="settings-up-form" method="POST">
     {% csrf_token %}
@@ -13,7 +28,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="full_name" {% if data.full_name != None %} value="{{ data.full_name }}" {% endif %} required />
+            <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="full_name" {% if data.profile.full_name != None %} value="{{ data.profile.full_name }}" {% endif %} required />
           </div>
         </div>
       </div>
@@ -26,7 +41,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <textarea class="textarea" placeholder="เช่น Bangkok" name="address" required>{% if data.address != None %}{{ data.address }}{% endif %}</textarea>
+            <textarea class="textarea" placeholder="เช่น Bangkok" name="address" required>{% if data.profile.address != None %}{{ data.profile.address }}{% endif %}</textarea>
           </div>
         </div>
       </div>
@@ -39,7 +54,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="email" placeholder="เช่น admin@thammask.com" name="email" {% if data.email != None %} value="{{ data.email }}" {% endif %} required />
+            <input class="input" type="email" placeholder="เช่น admin@thammask.com" name="email" {% if data.profile.email != None %} value="{{ data.profile.email }}" {% endif %} required />
           </div>
         </div>
       </div>
@@ -52,7 +67,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" {% if data.telephone != None %} value="{{ data.telephone }}" {% endif %} required/>
+            <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" {% if data.profile.telephone != None %} value="{{ data.profile.telephone }}" {% endif %} required/>
           </div>
         </div>
       </div>
@@ -65,7 +80,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="organization" {% if data.organization != None %} value="{{ data.organization }}" {% endif %} />
+            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="organization" {% if data.profile.organization != None %} value="{{ data.profile.organization }}" {% endif %} />
           </div>
           
         </div>
@@ -82,7 +97,7 @@
             <select class="input" name="job" required>
               <option hidden value="">-----------------</option>
               {% for job in jobs %}
-              <option value="{{ job.pk }}" {% if data.job != None %} selected {% endif %}>{{ job.job_name }}</option>
+              <option value="{{ job.pk }}" {% if data.profile.job != None %} selected {% endif %}>{{ job.job_name }}</option>
               {% endfor %}
             </select>
           </div>
@@ -97,7 +112,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="holding_medical_license_no" {% if data.holding_medical_license_no != None %} value="{{ data.holding_medical_license_no }}" {% endif %} />
+            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="holding_medical_license_no" {% if data.profile.holding_medical_license_no != None %} value="{{ data.profile.holding_medical_license_no }}" {% endif %} />
           </div>
           <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
         </div>
@@ -112,7 +127,7 @@
             <button class="button is-primary" type="submit">
               ยืนยัน
             </button>
-            <a href="{% url 'logout' %}" class="button is-primary">ออกจากระบบ</a>
+            <a href="{% url 'logout' %}" class="button logout">ออกจากระบบ</a>
           </div>
         </div>
       </div>

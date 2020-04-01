@@ -41,15 +41,33 @@ def profile(request):
             form.save()
             return redirect('donate:home')
         else:
+            data = dict()
+            data['nav'] = ({
+            '0': [
+                    {
+                        'page':"ประวัติส่วนตัว",
+                        'url':reverse('donate:profile')
+                    }
+                ]
+            })
             jobs = Job.objects.all()
-            return render(request, 'settings_up.html', {'jobs':jobs})
+            return render(request, 'settings_up.html', {'data':data,'jobs':jobs})
     else:
         profile = Profile.objects.filter(user=request.user)
+        data = dict()
         if profile.exists():
-            data = Profile.objects.get(user=request.user)
+            data['profile'] = Profile.objects.get(user=request.user)
         else:
-            data = ''
+            data['profile'] = ''
         jobs = Job.objects.all()
+        data['nav'] = ({
+            '0': [
+                {
+                    'page':"ประวัติส่วนตัว",
+                    'url':reverse('donate:profile')
+                }
+            ]
+        })
         return render(request, 'settings_up.html', {'data':data, 'jobs':jobs})
 
 @login_required

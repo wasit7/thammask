@@ -34,14 +34,9 @@ class Profile(models.Model):
     holding_medical_license_no = models.CharField(max_length=20, null=True, blank=True)
     organization = models.CharField(max_length=500, null=True, blank=True)
 
-    # def save(self, req):
-    #     if self.pk == None:
-    #         self.user = request.user
-
     def __str__(self):
         return self.full_name
 
-    
 class Donate(models.Model):
     SHIPPING = 'Shipping'
     RECEIVED = 'Received'
