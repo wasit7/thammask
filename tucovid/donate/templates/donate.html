@@ -116,8 +116,8 @@
     <div class="table-container">
       <table class="table is-fullwidth is-striped margin-top">
         <tr>
-          <th width="30%">รายการ</th>
-          <th width="15%">จำนวน</th>
+          <th width="25%">รายการ</th>
+          <th width="20%">จำนวน</th>
           <th width="15%">สถานะ</th>
           <th width="20%">หมายเลขติดตามพัสดุ</th>
           <th>หมายเหตุ</th>
@@ -125,7 +125,7 @@
         {% for data in data.donate %}
         <tr>
           <td>{{ data.item }}</td>
-          <td>{{ data.quantity }}</td>
+          <td>{{ data.quantity }} ({{ data.item.unit }})</td>
           <td>{{ data.status }}</td>
           <td>{{ data.shipping_id }}</td>
           <td>{{ data.note }}</td>

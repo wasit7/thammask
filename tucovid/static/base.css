@@ -69,6 +69,13 @@ body, html {
   min-width: fit-content;
 }
 
+.index {
+  font-family: 'Kanit', 'san serif';
+  color: #ffffff;
+  max-width: 800px;
+  min-width: fit-content;
+}
+
 .home_img {
   max-width: 250px;
   min-width: fit-content;

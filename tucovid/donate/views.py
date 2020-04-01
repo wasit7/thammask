@@ -9,7 +9,8 @@ from django.urls import reverse
 # Create your views here.
 def index(request):
     if request.user.is_anonymous:
-        return render(request, 'index.html')
+        donate_history = Donate.objects.all()
+        return render(request, 'index.html', {'donate_history':donate_history})
     else:
         return redirect('donate:check_user_exists')
 
@@ -110,12 +111,8 @@ def request(request):
         post_copy['created_by'] = request.user.pk
         form = ReceiveForm(post_copy)
         if form.is_valid():
-            print('aaaaaaaaaaaaaaaaaaaaaaaaaaaa')
             form.save()
             return redirect('donate:request')
-        else:
-            print('-----------------form valid----------------')
-            print(form)
     else:
         items = Item.objects.all()
         data = dict()
