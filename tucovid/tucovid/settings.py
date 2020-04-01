@@ -58,7 +58,9 @@ SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('FACEBOOK_KEY', '604052317110535')  # 
 SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('FACEBOOK_SECRET', '33c834f85105667ed7ee55fd34cabf27')  # App Secret
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'donate:check_user_exists'
 
-LOGOUT_URL = 'logout'
+LOGIN_URL = 'donate:index'
+LOGIN_REDIRECT_URL = 'donate:index'
+LOGOUT_URL = 'donate:logout'
 LOGOUT_REDIRECT_URL = 'donate:index'
 
 MIDDLEWARE = [

@@ -13,9 +13,11 @@ def index(request):
     else:
         return redirect('donate:check_user_exists')
 
+@login_required
 def home(request):
     return render(request, 'home.html')
 
+@login_required
 def verify_user(request):
     profile = Profile.objects.filter(user=request.user)
     if profile.exists():
