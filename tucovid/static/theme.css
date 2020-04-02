@@ -94,3 +94,7 @@
 .is-cancel {
   color: #707070;
 }
+
+.table {
+  background-color: transparent;
+}

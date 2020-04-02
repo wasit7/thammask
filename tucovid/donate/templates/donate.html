@@ -112,6 +112,7 @@
       </div>
     </form>
     <hr>
+    {% if data.donate %}
     <h4 class="title is-4 no-margin">ประวัติการบริจาค</h4>
     <div class="table-container">
       <table class="table is-fullwidth is-striped margin-top">
@@ -133,5 +134,7 @@
         {% endfor %}
       </table>
     </div>
+    {% endif %}
+
   </div>
 {% endblock content %}
