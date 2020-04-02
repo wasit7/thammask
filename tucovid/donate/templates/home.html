@@ -1,16 +1,35 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="content">
-    <div class="mobile-only">
-        <a class="button mobile-fullwidth" href="{% url 'donate:donate' %}">ร่วมบริจาคกับเรา</a><br>
-        <a class="button mobile-fullwidth" href="{% url 'donate:request' %}">ขอรับบริจาคหน้ากากอนามัย</a>
-    </div>
-    <center><img src="{% static 'assets/thammask4_720.jpg' %}" alt="" /></center><br>
-    <p class="home">หน้ากากสะท้อนน้ำ (ThamMask)
-        เป็นหน้ากากที่พัฒนาโดยทีมนักวิจัยจากมหาวิทยาลัยธรรมศาสตร์ โดยความมุ่งหวังเพื่อเป็นหน้ากากทางเลือกสำหรับบุคลากรทางการแพทย์ (medical personnel grade)
-        ป้องกันการแพร่กระจายของเชื้อโรคผ่านการจาม ไอ เหมาะสำหรับบุคคลากรทางการแพทย์ที่ไม่ได้สัมผัสโดยตรงกับผู้ป่วยที่ติดเชื้อ COVID-19 เพื่อใช้ตรวจคนใช้ทั่วไป ผู้ที่ปฏิบัติงานในพื้นที่เสี่ยง และประชาชนที่มีความเสี่ยงในการพบปะผู้คนจำนวนมากและป้องกันการระบาดของโรคอีกด้วย
-        โดยที่ผ่านมาพบปัญหาการขาดแคลนหน้ากาก Thammask จะช่วยแก้ปัญาหาตรงนี้ได้ด้วยการใช้ซ้ำได้มากกว่า 30 ครั้ง ลดการสร้างขยะได้อีกด้วย</p>
-    <p class="home" >ติดตามข่าวสารได้ที่ Fan Page facebook : <a href="https://www.facebook.com/thammaskformed" target="_blank">Thammask for Med</a></p>    
+  <div class="mobile-only">
+    <a class="button mobile-fullwidth" href="{% url 'donate:donate' %}"
+      >ร่วมบริจาคกับเรา</a
+    >
+    <a class="button mobile-fullwidth" href="{% url 'donate:request' %}"
+      >ขอรับบริจาคหน้ากากอนามัย</a
+    >
+  </div>
+  <div class="image">
+    <img src="{% static 'assets/thammask4_720.jpg' %}" alt="" />
+  </div>
+  <div class="description">
+    <p>
+      หน้ากากสะท้อนน้ำ (ThamMask)
+      เป็นหน้ากากที่พัฒนาโดยทีมนักวิจัยจากมหาวิทยาลัยธรรมศาสตร์
+      โดยความมุ่งหวังเพื่อเป็นหน้ากากทางเลือกสำหรับบุคลากรทางการแพทย์ (medical
+      personnel grade) ป้องกันการแพร่กระจายของเชื้อโรคผ่านการจาม ไอ
+      เหมาะสำหรับบุคคลากรทางการแพทย์ที่ไม่ได้สัมผัสโดยตรงกับผู้ป่วยที่ติดเชื้อ
+      COVID-19 เพื่อใช้ตรวจคนใช้ทั่วไป ผู้ที่ปฏิบัติงานในพื้นที่เสี่ยง
+      และประชาชนที่มีความเสี่ยงในการพบปะผู้คนจำนวนมากและป้องกันการระบาดของโรคอีกด้วย
+      โดยที่ผ่านมาพบปัญหาการขาดแคลนหน้ากาก Thammask
+      จะช่วยแก้ปัญาหาตรงนี้ได้ด้วยการใช้ซ้ำได้มากกว่า 30 ครั้ง
+      ลดการสร้างขยะได้อีกด้วย
+    </p>
+    <p>
+      ติดตามข่าวสารได้ที่ Fan Page facebook :
+      <a href="https://www.facebook.com/thammaskformed" target="_blank"
+        >Thammask for Med</a
+      >
+    </p>
+  </div>
 </div>
 {% endblock %}

@@ -23,7 +23,7 @@ body, html {
   flex-grow: 1;
   padding: 3rem 5rem;
   overflow-y: auto;
-  background-color: #fef9f6;
+  background-color: #fefcfa;
 }
 
 .no-margin {
@@ -85,7 +85,7 @@ body, html {
 }
 
 .settings-up-form {
-  margin-top: 52px;
+  margin-top: 2rem;
 }
 
 .menu-group {
@@ -114,6 +114,7 @@ body, html {
 
 .menu-item.is-active {
   background-color: #f3806b;
+  color: #fefcfa;
 }
 
 .likert-scale {
@@ -156,4 +157,8 @@ body, html {
   width: auto;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.29);
   border-radius: 4px;
+}
+
+.content li + li {
+  margin-top: 0;
 }

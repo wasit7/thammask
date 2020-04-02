@@ -1,116 +1,138 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-  <div class="content">
-    <p class="page-header">
-      <a href="{% url 'donate:home' %}" class="navigator">
-        <span class="">Home</span>
-      {% if data.nav.0 %}
-        </a> <span class="color-white">/</span>
-        {% for d in data.nav.0 %}
-          <a href="{{ d.url }}" class="navigator">
-            <span class="">{{ d.page }}</span>
-          </a>
-        {% endfor %}
-      {% endif %}
-    </p>
-    <hr>
-    <br>
-    <h4 class="title is-4 no-margin">ขอรับบริจาคหน้ากากอนามัย</h4>
-    <form action="{% url 'donate:request' %}" class="settings-up-form" method="POST">
-      {% csrf_token %}
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">ชื่อ-นามสกุล ผู้ขอรับบริจาค*</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="receiver" required />
-            </div>
-          </div>
-        </div>
-      </div>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="content">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul class="no-margin">
+      <li>
+        <a href="{% url 'donate:home' %}">หน้าแรก</a>
+      </li>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">สิ่งของที่ต้องการขอรับบริจาค*</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <div class="select is-fullwidth">
-                <select name="item" required>
-                  <option disabled selected value="">กรุณาเลือกสิ่งของที่ต้องการบริจาค</option>
-                  {% for item in items %}
-                  <option value="{{ item.pk }}">{{ item.item_name }} ({{ item.unit }})</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% for d in data.nav.0 %}
+      <li>
+        <a href="{{ d.url }}">{{ d.page }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
 
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">ที่อยู่ผู้รับ</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <textarea class="textarea" placeholder="เช่น Bangkok" name="shipping_address" required></textarea>
-            </div>
+  <hr />
+  <h4 class="title is-4 no-margin">ขอรับบริจาคหน้ากากอนามัย</h4>
+  <form
+    action="{% url 'donate:request' %}"
+    class="settings-up-form"
+    method="POST"
+  >
+    {% csrf_token %}
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">ชื่อ-นามสกุล ผู้ขอรับบริจาค*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input
+              class="input"
+              type="text"
+              placeholder="เช่น Dr.Admin Thammask"
+              name="receiver"
+              required
+            />
           </div>
         </div>
       </div>
-
-      <div class="field is-horizontal">
-        <div class="field-label is-normal">
-          <label class="label">หมายเหตุ</label>
-        </div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <textarea class="textarea" placeholder="เช่น Shipping from other country" name="note"></textarea>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field is-horizontal margin-top">
-        <div class="field-label"></div>
-        <div class="field-body">
-          <div class="field">
-            <div class="control">
-              <button class="button is-primary" type="submit">
-                ยืนยัน
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-    <br>
-    <hr>
-    <h4 class="title is-4 no-margin">ประวัติการขอรับบริจาค</h4>
-    <div class="table-container">
-      <table class="table is-fullwidth is-striped margin-top">
-        <tr>
-          <th width="25%">รายการ</th>
-          <th width="25%">ที่อยู่ผู้รับ</th>
-          <th width="15%">สถานะ</th>
-          <th>หมายเลขติดตามพัสดุ</th>
-        </tr>
-        {% for data in data.receive %}
-        <tr>
-          <td>{{ data.item }} ({{ data.item.unit }})</td>
-          <td>{{ data.shipping_address }}</td>
-          <td>{{ data.status }}</td>
-          <td>{{ data.shipping_id }}</td>
-        </tr>
-        {% endfor %}
-      </table>
     </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">สิ่งของที่ต้องการขอรับบริจาค*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select name="item" required>
+                <option disabled selected value=""
+                  >กรุณาเลือกสิ่งของที่ต้องการบริจาค</option
+                >
+                {% for item in items %}
+                <option value="{{ item.pk }}"
+                  >{{ item.item_name }} ({{ item.unit }})</option
+                >
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">ที่อยู่ผู้รับ</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <textarea
+              class="textarea"
+              placeholder="เช่น Bangkok"
+              name="shipping_address"
+              required
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">หมายเหตุ</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <textarea
+              class="textarea"
+              placeholder="เช่น Shipping from other country"
+              name="note"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal margin-top">
+      <div class="field-label"></div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <button class="button is-primary" type="submit">
+              ยืนยัน
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <hr />
+  <h4 class="title is-4 no-margin">ประวัติการขอรับบริจาค</h4>
+  <div class="table-container">
+    <table class="table is-fullwidth is-striped margin-top">
+      <tr>
+        <th width="25%">รายการ</th>
+        <th width="25%">ที่อยู่ผู้รับ</th>
+        <th width="15%">สถานะ</th>
+        <th>หมายเลขติดตามพัสดุ</th>
+      </tr>
+      {% for data in data.receive %}
+      <tr>
+        <td>{{ data.item }} ({{ data.item.unit }})</td>
+        <td>{{ data.shipping_address }}</td>
+        <td>{{ data.status }}</td>
+        <td>{{ data.shipping_id }}</td>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
+</div>
 {% endblock content %}

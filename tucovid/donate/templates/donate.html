@@ -3,20 +3,21 @@
 
 {% block content %}
   <div class="content">
-    <p class="page-header"></p>
-      <a href="{% url 'donate:home' %}" class="navigator">
-        <span class="">Home</span>
-      {% if data.nav.0 %}
-        </a> <span class="color-white">/</span>
-        {% for d in  data.nav.0 %}
-          <a href="{{ d.url }}" class="navigator">
-            <span class="">{{ d.page }}</span>
-          </a>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul class="no-margin">
+        <li>
+          <a href="{% url 'donate:home' %}">หน้าแรก</a>
+        </li>
+  
+        {% for d in data.nav.0 %}
+        <li>
+          <a href="{{ d.url }}">{{ d.page }}</a>
+        </li>
         {% endfor %}
-      {% endif %}
-    </p>
+      </ul>
+    </nav>
     <hr>
-    <br>
+
     <div class="taejai">
       <img src="{% static 'assets/tae-jai.png' %}">
       <h6 class="control" style="margin-top: 30px; margin-left: 20px;"><a href="https://taejai.com/th/d/thammask/" target="_blank">ร่วมบริจาคเงินสมทบทุน (คลิ้ก)</a></h6>
@@ -110,7 +111,6 @@
         </div>
       </div>
     </form>
-    <br>
     <hr>
     <h4 class="title is-4 no-margin">ประวัติการบริจาค</h4>
     <div class="table-container">
