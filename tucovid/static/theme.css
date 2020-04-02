@@ -7,12 +7,12 @@
 .sidebar {
   background-color: #fae2d6;
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.29);
+  z-index: 1;
 }
 
 .title {
   font-size: 28px;
   font-weight: bold;
-  color: #707070;
   margin: 36px 0;
 }
 

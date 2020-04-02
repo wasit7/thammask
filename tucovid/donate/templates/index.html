@@ -1,40 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-  <div class="content" style="background-color: #fab1a5;">
-    <center><img src="{% static 'assets/thammask4_720.jpg' %}" alt="" /></center><br>
-    <p class="index" sty>หน้ากากสะท้อนน้ำ (ThamMask)
-        เป็นหน้ากากที่พัฒนาโดยทีมนักวิจัยจากมหาวิทยาลัยธรรมศาสตร์ โดยความมุ่งหวังเพื่อเป็นหน้ากากทางเลือกสำหรับบุคลากรทางการแพทย์ (medical personnel grade)
-        ป้องกันการแพร่กระจายของเชื้อโรคผ่านการจาม ไอ เหมาะสำหรับบุคคลากรทางการแพทย์ที่ไม่ได้สัมผัสโดยตรงกับผู้ป่วยที่ติดเชื้อ COVID-19 เพื่อใช้ตรวจคนใช้ทั่วไป ผู้ที่ปฏิบัติงานในพื้นที่เสี่ยง และประชาชนที่มีความเสี่ยงในการพบปะผู้คนจำนวนมากและป้องกันการระบาดของโรคอีกด้วย
-        โดยที่ผ่านมาพบปัญหาการขาดแคลนหน้ากาก Thammask จะช่วยแก้ปัญาหาตรงนี้ได้ด้วยการใช้ซ้ำได้มากกว่า 30 ครั้ง ลดการสร้างขยะได้อีกด้วย</p>
-    <p class="index" >ติดตามข่าวสารได้ที่ Fan Page facebook : <a href="https://www.facebook.com/thammaskformed" target="_blank">Thammask for Med</a></p> 
-    <br>
-    <h4 class="title is-4 no-margin">ประวัติการบริจาค</h4>
-    <div class="table-container">
-      <table class="table is-fullwidth is-striped margin-top">
-        <tr>
-          <th width="35%">ชื่อ-นามสกุล</th>
-          <th width="35%">รายการ</th>
-          <th>จำนวน</th>
-        </tr>
-        {% for data in donate_history %}
-        <tr>
-          <td>{{ data.donator }}</td>
-          <td>{{ data.item }}</td>
-          <td>{{ data.quantity }} ({{ data.item.unit }})</td>
-        </tr>
-        {% endfor %}
-      </table>
-    </div>
+
+<div class="content">
+  <div class="image">
+    <img src="{% static 'assets/thammask4_720.jpg' %}" alt="" />
   </div>
+
+  <div class="description">
+    <p>
+      หน้ากากสะท้อนน้ำ (ThamMask)
+    เป็นหน้ากากที่พัฒนาโดยทีมนักวิจัยจากมหาวิทยาลัยธรรมศาสตร์
+    โดยความมุ่งหวังเพื่อเป็นหน้ากากทางเลือกสำหรับบุคลากรทางการแพทย์ (medical
+    personnel grade) ป้องกันการแพร่กระจายของเชื้อโรคผ่านการจาม ไอ
+    เหมาะสำหรับบุคคลากรทางการแพทย์ที่ไม่ได้สัมผัสโดยตรงกับผู้ป่วยที่ติดเชื้อ
+    COVID-19 เพื่อใช้ตรวจคนใช้ทั่วไป ผู้ที่ปฏิบัติงานในพื้นที่เสี่ยง
+    และประชาชนที่มีความเสี่ยงในการพบปะผู้คนจำนวนมากและป้องกันการระบาดของโรคอีกด้วย
+    โดยที่ผ่านมาพบปัญหาการขาดแคลนหน้ากาก Thammask
+    จะช่วยแก้ปัญาหาตรงนี้ได้ด้วยการใช้ซ้ำได้มากกว่า 30 ครั้ง
+    ลดการสร้างขยะได้อีกด้วย
+    </p>
+    <p>
+      ติดตามข่าวสารได้ที่ Fan Page facebook :
+      <a href="https://www.facebook.com/thammaskformed" target="_blank"
+        >Thammask for Med</a
+      >
+    </p>
+  </div>
+
+  {% if donate_history %}
+  <h4 class="title is-4 no-margin">ประวัติการบริจาค</h4>
+  <div class="table-container">
+    <table class="table is-fullwidth is-striped margin-top">
+      <tr>
+        <th width="35%">ชื่อ-นามสกุล</th>
+        <th width="35%">รายการ</th>
+        <th>จำนวน</th>
+      </tr>
+      {% for data in donate_history %}
+      <tr>
+        <td>{{ data.donator }}</td>
+        <td>{{ data.item }}</td>
+        <td>{{ data.quantity }} ({{ data.item.unit }})</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+</div>
 {% endblock content %}
 
 {% block script %}
-  <script>
-    (function init() {
-      const navbarBurgerMenu = document.getElementById("navbar-burger-menu");
-      navbarBurgerMenu.classList.toggle("is-active");
-    })();
-  </script>
+<script>
+  (function init() {
+    const navbarBurgerMenu = document.getElementById("navbar-burger-menu");
+    navbarBurgerMenu.classList.toggle("is-active");
+  })();
+</script>
 {% endblock %}
