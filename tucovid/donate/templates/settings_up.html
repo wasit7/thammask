@@ -37,19 +37,6 @@
 
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">ที่อยู่*</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <textarea class="textarea" placeholder="เช่น Bangkok" name="address" required>{% if data.profile.address != None %}{{ data.profile.address }}{% endif %}</textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
         <label class="label">อีเมล*</label>
       </div>
       <div class="field-body">
@@ -70,52 +57,6 @@
           <div class="control">
             <input class="input" type="text" placeholder="เช่น 099-9999999" name="telephone" {% if data.profile.telephone != None %} value="{{ data.profile.telephone }}" {% endif %} required/>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">ชื่อโรงพยาบาล</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="organization" {% if data.profile.organization != None %} value="{{ data.profile.organization }}" {% endif %} />
-          </div>
-          
-        </div>
-      </div>
-    </div>
-    
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">สาขาเฉพาะทาง*</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <select class="input" name="job" required>
-              <option hidden value="">-----------------</option>
-              {% for job in jobs %}
-              <option value="{{ job.pk }}" {% if data.profile.job != None %} selected {% endif %}>{{ job.job_name }}</option>
-              {% endfor %}
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">เลขวุฒิบัตร</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="holding_medical_license_no" {% if data.profile.holding_medical_license_no != None %} value="{{ data.profile.holding_medical_license_no }}" {% endif %} />
-          </div>
-          <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
         </div>
       </div>
     </div>

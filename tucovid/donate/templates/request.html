@@ -34,7 +34,8 @@
               type="text"
               placeholder="เช่น Dr.Admin Thammask"
               name="receiver"
-              required
+              value="{{ data.profile.full_name }}"
+              disabled
             />
           </div>
         </div>
@@ -50,12 +51,12 @@
           <div class="control">
             <div class="select is-fullwidth">
               <select name="item" required>
-                <option disabled selected value=""
+                <option disabled value=""
                   >กรุณาเลือกสิ่งของที่ต้องการบริจาค</option
                 >
-                {% for item in items %}
-                <option value="{{ item.pk }}"
-                  >{{ item.item_name }} ({{ item.unit }})</option
+                {% for item in data.items %}
+                <option value="{{ item.pk }}" selected
+                  >{{ item.item_name }} ({{item.quantity }} {{ item.unit }})</option
                 >
                 {% endfor %}
               </select>
@@ -67,18 +68,56 @@
 
     <div class="field is-horizontal">
       <div class="field-label is-normal">
-        <label class="label">ที่อยู่ผู้รับ</label>
+        <label class="label">ชื่อโรงพยาบาลที่สังกัด*</label>
       </div>
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <textarea
-              class="textarea"
-              placeholder="เช่น Bangkok"
-              name="shipping_address"
-              required
-            ></textarea>
+            <div class="select is-fullwidth">
+              <select name="hospital" required>
+                <option disabled selected value=""
+                  >กรุณาเลือกโรงพยาบาลที่สังกัด</option
+                >
+                {% for hospital in data.hospitals %}
+                <option value="{{ hospital.pk }}"
+                  >{{ hospital.hospital_name }} : {{ hospital.address }}</option
+                >
+                {% endfor %}
+              </select>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">สาขาเฉพาะทาง*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <select class="input" name="job" required>
+              <option disabled selected value="">กรุณาเลือกสาขาเฉพาะทาง</option>
+              {% for job in data.jobs %}
+              <option value="{{ job.pk }}" {% if data.profile.job != None %} selected {% endif %}>{{ job.job_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">เลขวุฒิบัตร</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <input class="input" type="text" placeholder="***ในกรณีที่ท่านไม่มีเลขวุฒิบัตรกรุณากรอกเครื่องหมาย ' - ' แทนนะคะ" name="holding_medical_license_no" {% if data.profile.holding_medical_license_no != None %} value="{{ data.profile.holding_medical_license_no }}" {% endif %} />
+          </div>
+          <p class="help">*สำหรับงานด้านการแพทย์จะได้รับการพิจารณาเป็นพิเศษ</p>
         </div>
       </div>
     </div>
@@ -128,7 +167,7 @@
       {% for data in data.receive %}
       <tr>
         <td>{{ data.item }} ({{ data.item.unit }})</td>
-        <td>{{ data.shipping_address }}</td>
+        <td>{{ data.hospital.hospital_name }}</td>
         <td>{{ data.status }}</td>
         <td>{{ data.shipping_id }}</td>
       </tr>

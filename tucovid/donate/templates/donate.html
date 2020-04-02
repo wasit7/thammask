@@ -33,7 +33,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="donator" required/>
+              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="donator" value="{{ data.profile.full_name }}" disabled />
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
               <div class="select is-fullwidth">
                 <select name="item" required>
                   <option disabled selected value="">กรุณาเลือกสิ่งของที่ต้องการบริจาค</option>
-                  {% for item in items %}
+                  {% for item in data.items %}
                   <option value="{{ item.pk }}">{{ item.donate_item_name }} ({{ item.unit }})</option>
                   {% endfor %}
                 </select>
@@ -97,7 +97,16 @@
           </div>
         </div>
       </div>
-
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label"></label>
+        </div>
+        <div class="field-body">
+          <p style="color: red; text-align: left;">*** ทางเราจะติดต่อกลับไปทางเบอร์โทรศัพท์ {{ data.profile.telephone }}</p>
+        </div>
+      </div>
+      
       <div class="field is-horizontal margin-top">
         <div class="field-label"></div>
         <div class="field-body">

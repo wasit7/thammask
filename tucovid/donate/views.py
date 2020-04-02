@@ -51,8 +51,8 @@ def profile(request):
                     }
                 ]
             })
-            jobs = Job.objects.all()
-            return render(request, 'settings_up.html', {'data':data,'jobs':jobs})
+            
+            return render(request, 'settings_up.html', {'data':data})
     else:
         profile = Profile.objects.filter(user=request.user)
         data = dict()
@@ -60,7 +60,7 @@ def profile(request):
             data['profile'] = Profile.objects.get(user=request.user)
         else:
             data['profile'] = ''
-        jobs = Job.objects.all()
+        
         data['nav'] = ({
             '0': [
                 {
@@ -69,26 +69,22 @@ def profile(request):
                 }
             ]
         })
-        return render(request, 'settings_up.html', {'data':data, 'jobs':jobs})
-
-@login_required
-def donate_history(request):
-    data = Donate.objects.filter(created_by=request.user)
-    return render(request, 'donate_history.html', {'data':data})
+        return render(request, 'settings_up.html', {'data':data})
 
 @login_required
 def donate(request):
+    donator = Profile.objects.get(user__id=request.user.pk)
     if request.method == 'POST':
         post_copy = request.POST.copy()
-        post_copy['created_by'] = request.user.pk
+        post_copy['donator'] = donator
         form = DonateForm(post_copy)
         if form.is_valid():
             form.save()
             return redirect('donate:donate')
     else:
-        items = DonateItem.objects.all()
         data = dict()
-        data['donate'] = Donate.objects.filter(created_by=request.user).order_by('-id')
+        data['items'] = DonateItem.objects.filter(show_item=True)
+        data['donate'] = Donate.objects.filter(donator=donator).order_by('-id')
         data['nav'] = ({
             '0': [
                 {
@@ -97,26 +93,24 @@ def donate(request):
                 }
             ]
         })
-        return render(request, 'donate.html', {'items':items, 'data':data})
-
-@login_required
-def request_history(request):
-    data = Receive.objects.filter(created_by=request.user)
-    return render(request, 'request_history.html', {'data':data})
+        data['profile'] = donator
+        return render(request, 'donate.html', {'data':data})
 
 @login_required
 def request(request):
+    receiver = Profile.objects.get(user__id=request.user.pk)
     if request.method == 'POST':
         post_copy = request.POST.copy()
-        post_copy['created_by'] = request.user.pk
+        post_copy['receiver'] = receiver
         form = ReceiveForm(post_copy)
+        jobs = Job.objects.all()
         if form.is_valid():
             form.save()
             return redirect('donate:request')
     else:
-        items = Item.objects.all()
         data = dict()
-        data['receive'] = Receive.objects.filter(created_by=request.user).order_by('-id')
+        data['items'] = Item.objects.all()
+        data['receive'] = Receive.objects.filter(receiver=receiver).order_by('-id')
         data['nav'] = ({
             '0': [
                 {
@@ -125,7 +119,10 @@ def request(request):
                 }
             ]
         })
-        return render(request, 'request.html', {'items':items, 'data':data})
+        data['jobs'] = Job.objects.all()
+        data['profile'] = receiver
+        data['hospitals'] = Hospital.objects.all()
+        return render(request, 'request.html', {'data':data})
 
 @login_required
 def review(request):
