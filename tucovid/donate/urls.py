@@ -9,4 +9,5 @@ urlpatterns = [
     path('request/', views.request, name='request'),
     path('review/', views.review, name='review'),
     path('verify_user', views.verify_user, name='check_user_exists'),
+    path('printing/', views.printing, name='printing')
 ]

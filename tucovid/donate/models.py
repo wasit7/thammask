@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
 class Hospital(models.Model):
@@ -66,14 +67,12 @@ class Donate(models.Model):
         return str(self.donator)
 
 class Receive(models.Model):
-    WAIT_FOR_VERIFY = 'Wait for verify'
-    VERIFIED = 'Verified'
-    PACKING = 'Packing'
-    SHIPPING = 'Shipping'
-    CONFIRM_RECEIVED = 'Confirm received'
+    WAITING_FOR_PRODUCTION = 'รอการผลิต'
+    PACKING = 'กำลังบรรจุ'
+    SHIPPING = 'กำลังจัดส่ง'
+    CONFIRM_RECEIVED = 'ยืนยันการรับของ'
     RECEIVE_STATUS = [
-        (WAIT_FOR_VERIFY,'Wait for verify'),
-        (VERIFIED,'Verified'),
+        (WAITING_FOR_PRODUCTION,'Waiting for production'),
         (PACKING,'Packing'),
         (SHIPPING,'Shipping'),
         (CONFIRM_RECEIVED,'Confirm received')
@@ -84,14 +83,15 @@ class Receive(models.Model):
     hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, null=True, blank=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True, blank=True)
     holding_medical_license_no = models.CharField(max_length=20, null=True, blank=True)
-    shipping_id = models.CharField(max_length=30)
+    shipping_id = models.CharField(max_length=30, null=True, blank=True)
     note = models.TextField(null=True, blank=True)
-    status = models.CharField(max_length=100, choices=RECEIVE_STATUS, default=WAIT_FOR_VERIFY)
+    status = models.CharField(max_length=100, choices=RECEIVE_STATUS, default=WAITING_FOR_PRODUCTION)
+    unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
-        return str(self.receiver)
+        return str(self.hospital)
 
 class Review(models.Model):
     receive = models.OneToOneField(Receive, on_delete=models.CASCADE)
@@ -101,3 +101,18 @@ class Review(models.Model):
 
     def __str__(self):
         return str(self.receive)
+
+class Order(models.Model):
+    order_name = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.order_name)
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
+    receive = models.ForeignKey(Receive, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.order)

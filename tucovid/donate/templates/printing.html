@@ -1,0 +1,60 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>THAMMASK</title>
+    <meta name="description" content="THAMMASK" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'base.css' %}" />
+    <link rel="stylesheet" href="{% static 'mobile.css' %}" />
+    <link rel="stylesheet" href="{% static 'print.css' %}" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <script type="text/javascript" src="{% static 'script/qrcode.min.js' %}"></script>
+  </head>
+  <body>
+    <div class="page">
+      <div class="columns">
+        {% for item in items %}
+        <div class="column is-half">
+          ชื่อ-นามสกุล : {{ item.receive.receiver.full_name }}<br>
+          สถานที่จัดส่ง : {{ item.receive.hospital }}<br>{{ item.receive.hospital.address }}<br>
+          ฝ่าย/สาขา : {{ item.receive.job }}<br>
+          เลขวุฒิบัตร : {{ item.receive.holding_medical_license_no }}<br>
+          <div class="qrcode" id='{{ item.pk }}'></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+  <script>
+    const qrcodes = document.querySelectorAll(".qrcode");
+    for (let qrcode of qrcodes) {
+      console.log(qrcode.id)
+      const qrcodeImage = new QRCode(qrcode.id, {
+          text: "http://127.0.0.1:8000/printint/",
+          width: 128,
+          height: 128,
+          colorDark : "#000000",
+          colorLight : "#ffffff",
+          correctLevel : QRCode.CorrectLevel.H
+      });
+    }
+//     var qrcode_id = document.querySelector('.qr_code').id
+//     console.log(qrcode_id)
+//     var qrcode = new QRCode(qrcode_id, {
+//     text: "http://jindo.dev.naver.com/collie",
+//     width: 128,
+//     height: 128,
+//     colorDark : "#000000",
+//     colorLight : "#ffffff",
+//     correctLevel : QRCode.CorrectLevel.H
+// });
+  </script>
+</html>

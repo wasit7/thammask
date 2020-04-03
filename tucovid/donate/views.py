@@ -127,3 +127,9 @@ def request(request):
 @login_required
 def review(request):
     return render(request, 'review.html')
+
+@login_required
+def printing(request):
+    order = Order.objects.all().last()
+    items = OrderItem.objects.filter(order=order)
+    return render(request, 'printing.html', {'items':items})
