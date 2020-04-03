@@ -17,14 +17,14 @@
       defer
       src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
     ></script>
+    <script type="text/javascript" src="{% static 'script/qrcode.min.js' %}"></script>
   </head>
   <body>
     <div class="custom-container">
       <div class="sidebar">
         <div class="logo">
-          <img src="{% static 'assets/logo-thammask.png' %}" alt="" />
+          <a href="{% url 'donate:home' %}"><img src="{% static 'assets/logo-thammask.png' %}" alt="" /></a>
         </div>
-        <h4 class="title">Thammask system</h4>
         <div class="menu mobile-hidden">
           {% if not request.user.is_anonymous %}
             {% if request.user.pk|get_full_name != None %}
@@ -59,7 +59,7 @@
           >
           {% endif %}
         </div>
-        <div class="mobile-only">
+        <div class="mobile-only burger-menu">
           <a class="navbar-burger burger" id="navbar-burger">
             <i class="fas fa-bars"></i>
           </a>

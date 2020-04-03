@@ -22,10 +22,10 @@
   }
 
   .logo {
-    width: 32px;
+    width: 40px;
     height: auto;
+    margin: 0;
     margin-right: 12px;
-    margin-top: 0;
   }
 
   .sidebar > .title {
@@ -47,7 +47,7 @@
   #navbar-burger-menu {
     position: absolute;
     width: 100%;
-    top: 60px;
+    top: 54px;
     z-index: 10;
   }
 
@@ -72,11 +72,13 @@
     width: 100%;
     margin-bottom: 1rem;
     background-color: #2d9984;
+    color: #ffffff;
   }
 
   .mobile-fullwidth:hover {
     width: 100%;
     margin-bottom: 1rem;
     background-color: #2d9984;
+    color: #ffffff;
   }
 }

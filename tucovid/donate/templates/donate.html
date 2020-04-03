@@ -3,20 +3,21 @@
 
 {% block content %}
   <div class="content">
-    <p class="page-header"></p>
-      <a href="{% url 'donate:home' %}" class="navigator">
-        <span class="">Home</span>
-      {% if data.nav.0 %}
-        </a> <span class="color-white">/</span>
-        {% for d in  data.nav.0 %}
-          <a href="{{ d.url }}" class="navigator">
-            <span class="">{{ d.page }}</span>
-          </a>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul class="no-margin">
+        <li>
+          <a href="{% url 'donate:home' %}">หน้าแรก</a>
+        </li>
+  
+        {% for d in data.nav.0 %}
+        <li>
+          <a href="{{ d.url }}">{{ d.page }}</a>
+        </li>
         {% endfor %}
-      {% endif %}
-    </p>
+      </ul>
+    </nav>
     <hr>
-    <br>
+
     <div class="taejai">
       <img src="{% static 'assets/tae-jai.png' %}">
       <h6 class="control" style="margin-top: 30px; margin-left: 20px;"><a href="https://taejai.com/th/d/thammask/" target="_blank">ร่วมบริจาคเงินสมทบทุน (คลิ้ก)</a></h6>
@@ -32,7 +33,7 @@
         <div class="field-body">
           <div class="field">
             <div class="control">
-              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="donator" required/>
+              <input class="input" type="text" placeholder="เช่น Dr.Admin Thammask" name="donator" value="{{ data.profile.full_name }}" disabled />
             </div>
           </div>
         </div>
@@ -40,7 +41,7 @@
 
       <div class="field is-horizontal">
         <div class="field-label is-normal">
-          <label class="label">สิ่งของบริจาค*</label>
+          <label class="label">ขอบริจาค*</label>
         </div>
         <div class="field-body">
           <div class="field">
@@ -48,7 +49,7 @@
               <div class="select is-fullwidth">
                 <select name="item" required>
                   <option disabled selected value="">กรุณาเลือกสิ่งของที่ต้องการบริจาค</option>
-                  {% for item in items %}
+                  {% for item in data.items %}
                   <option value="{{ item.pk }}">{{ item.donate_item_name }} ({{ item.unit }})</option>
                   {% endfor %}
                 </select>
@@ -96,7 +97,16 @@
           </div>
         </div>
       </div>
-
+      
+      <div class="field is-horizontal">
+        <div class="field-label is-normal">
+          <label class="label"></label>
+        </div>
+        <div class="field-body">
+          <p style="color: red; text-align: left;">*** ทีมงานจะติดต่อกลับไปทางเบอร์โทรศัพท์ที่ระบุไว้ในประวัติส่วนตัว</p>
+        </div>
+      </div>
+      
       <div class="field is-horizontal margin-top">
         <div class="field-label"></div>
         <div class="field-body">
@@ -110,14 +120,14 @@
         </div>
       </div>
     </form>
-    <br>
     <hr>
+    {% if data.donate %}
     <h4 class="title is-4 no-margin">ประวัติการบริจาค</h4>
     <div class="table-container">
       <table class="table is-fullwidth is-striped margin-top">
         <tr>
-          <th width="30%">รายการ</th>
-          <th width="15%">จำนวน</th>
+          <th width="25%">รายการ</th>
+          <th width="20%">จำนวน</th>
           <th width="15%">สถานะ</th>
           <th width="20%">หมายเลขติดตามพัสดุ</th>
           <th>หมายเหตุ</th>
@@ -125,7 +135,7 @@
         {% for data in data.donate %}
         <tr>
           <td>{{ data.item }}</td>
-          <td>{{ data.quantity }}</td>
+          <td>{{ data.quantity }} ({{ data.item.unit }})</td>
           <td>{{ data.status }}</td>
           <td>{{ data.shipping_id }}</td>
           <td>{{ data.note }}</td>
@@ -133,5 +143,7 @@
         {% endfor %}
       </table>
     </div>
+    {% endif %}
+
   </div>
 {% endblock content %}

@@ -4,14 +4,14 @@ from .models import *
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['user', 'full_name', 'address', 'email', 'telephone', 'job', 'holding_medical_license_no', 'organization']
+        fields = ['user', 'full_name', 'email', 'telephone']
 
 class DonateForm(ModelForm):
     class Meta:
         model = Donate
-        fields = ['created_by', 'donator', 'item', 'quantity', 'note', 'shipping_id']
+        fields = ['donator', 'item', 'quantity', 'note', 'shipping_id']
 
 class ReceiveForm(ModelForm):
     class Meta:
         model = Receive
-        fields = ['created_by', 'receiver', 'item', 'shipping_address', 'note']
+        fields = ['receiver', 'item', 'hospital', 'job', 'holding_medical_license_no', 'note']
