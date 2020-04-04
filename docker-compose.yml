@@ -5,7 +5,7 @@ services:
     container_name: thammask-db
     env_file: .env.production
     volumes:
-    - /home/kubelab/data/thammask_data:/var/lib/postgresql/data
+    - ./volumes/data:/var/lib/postgresql/data
     networks:
     - internal
     labels:
@@ -30,6 +30,27 @@ services:
     restart: always
     volumes:
     - ./tucovid:/thammask
+    - ./volumes/static:/static
+    - ./volumes/media:/media
+
+  thammask-nginx:
+    image: nginx:alpine
+    container_name: thammask-nginx
+    volumes:
+    - ./volumes/static:/usr/share/nginx/html/static
+    - ./volumes/media:/usr/share/nginx/html/media
+    networks:
+    - internal
+    - proxy
+    labels:
+    - traefik.backend=thammask-nginx
+    - traefik.docker.network=proxy
+    - traefik.enable=true
+    - traefik.frontend.rule=Host:thammask.storemesh.com;PathPrefix:/static/,/media/
+    - traefik.port=80
+    depends_on:
+    - thammask-django
+    restart: always
 
 networks:
   internal:
