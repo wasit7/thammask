@@ -5,6 +5,7 @@ import datetime
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def index(request):
@@ -131,5 +132,14 @@ def review(request):
 @login_required
 def printing(request):
     order = Order.objects.all().last()
-    items = OrderItem.objects.filter(order=order)
+    order_items = OrderItem.objects.filter(order=order)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(order_items, 8)
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        items = paginator.page(1)
+    except EmptyPage:
+        items = paginator.page(paginator.num_pages)
+
     return render(request, 'printing.html', {'items':items})
