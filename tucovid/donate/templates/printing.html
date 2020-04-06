@@ -19,11 +19,6 @@
     <script type="text/javascript" src="{% static 'script/qrcode.min.js' %}"></script>
   </head>
   <body>
-    <!-- ชื่อ-นามสกุล : {{ item.receive.receiver.full_name }}<br>
-    สถานที่จัดส่ง : {{ item.receive.hospital }}<br>{{ item.receive.hospital.address }}<br>
-    ฝ่าย/สาขา : {{ item.receive.job }}<br>
-    เลขวุฒิบัตร : {{ item.receive.holding_medical_license_no }}<br>
-    <div class="qrcode" id='{{ item.pk }}'> -->
     <div class="page">
       <div class="print_gird">
         {% for item in items %}
@@ -33,7 +28,7 @@
           <p>{{ item.receive.hospital.address }}</p>
           <p>ฝ่าย/สาขา : {{ item.receive.job }}</p>
           <p>เลขวุฒิบัตร : {{ item.receive.holding_medical_license_no }}</p>
-          <div class="qrcode" id='{{ item.pk }}/{{ item.receive.unique_id }}' style="margin-top: 10px;" ></div><br>
+          <div class="qrcode" id='{{ item.pk }}?u_id={{ item.receive.unique_id }}' style="margin-top: 10px;" ></div><br>
         </div>
         {% endfor %}
       </div>

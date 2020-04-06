@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from .forms import *
 import datetime
@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -143,3 +144,23 @@ def printing(request):
         items = paginator.page(paginator.num_pages)
 
     return render(request, 'printing.html', {'items':items})
+
+@login_required
+def shipping(request, id):
+    if request.user.is_staff or request.user.is_superuser:
+        print('Admin/Staff')
+        data = dict()
+        order_item = OrderItem.objects.get(pk=id)
+        data['receive'] = Receive.objects.get(pk=order_item.receive.pk)
+        if data['receive'].status == 'กำลังจัดส่ง':
+            data['message'] = 'ซ้ำ'
+        else:
+            data['receive'].status = 'กำลังจัดส่ง'
+            data['receive'].save()
+            data['message'] = 'Success'
+        return render(request, 'alert.html', {'data':data})
+    else:
+        print('User')
+        order_item = OrderItem.objects.get(pk=id)
+        Receive.objects.filter(pk=order_item.receive.pk).update(status='ยืนยันการรับของ')
+        return render(request, 'review.html')
