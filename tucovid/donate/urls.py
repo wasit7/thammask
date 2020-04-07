@@ -7,8 +7,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('donate/', views.donate, name='donate'),
     path('request/', views.request, name='request'),
-    path('review/', views.review, name='review'),
     path('verify_user', views.verify_user, name='check_user_exists'),
     path('printing/', views.printing, name='printing'),
-    path('shipping/<int:id>', views.shipping, name='shipping')
+    path('process/<int:id>', views.process, name='process'),
 ]

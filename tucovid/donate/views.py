@@ -18,6 +18,10 @@ def index(request):
 
 @login_required
 def home(request):
+    profile = Profile.objects.filter(user=request.user)
+    if not profile.exists():
+        return redirect('donate:profile')
+
     return render(request, 'home.html')
 
 @login_required
@@ -75,6 +79,10 @@ def profile(request):
 
 @login_required
 def donate(request):
+    profile = Profile.objects.filter(user=request.user)
+    if not profile.exists():
+        return redirect('donate:profile')
+
     donator = Profile.objects.get(user__id=request.user.pk)
     if request.method == 'POST':
         post_copy = request.POST.copy()
@@ -100,6 +108,10 @@ def donate(request):
 
 @login_required
 def request(request):
+    profile = Profile.objects.filter(user=request.user)
+    if not profile.exists():
+        return redirect('donate:profile')
+
     receiver = Profile.objects.get(user__id=request.user.pk)
     if request.method == 'POST':
         post_copy = request.POST.copy()
@@ -128,10 +140,18 @@ def request(request):
 
 @login_required
 def review(request):
+    profile = Profile.objects.filter(user=request.user)
+    if not profile.exists():
+        return redirect('donate:profile')
+
     return render(request, 'review.html')
 
 @login_required
 def printing(request):
+    profile = Profile.objects.filter(user=request.user)
+    if not profile.exists():
+        return redirect('donate:profile')
+
     order = Order.objects.all().last()
     order_items = OrderItem.objects.filter(order=order)
     page = request.GET.get('page', 1)
@@ -146,21 +166,31 @@ def printing(request):
     return render(request, 'printing.html', {'items':items})
 
 @login_required
-def shipping(request, id):
+def process(request, id):
+    profile = Profile.objects.filter(user=request.user)
+    if not profile.exists():
+        return redirect('donate:profile')
+        
     if request.user.is_staff or request.user.is_superuser:
         print('Admin/Staff')
         data = dict()
         order_item = OrderItem.objects.get(pk=id)
         data['receive'] = Receive.objects.get(pk=order_item.receive.pk)
         if data['receive'].status == 'กำลังจัดส่ง':
-            data['message'] = 'ซ้ำ'
+            data['message'] = 'ทำรายการซ้ำ'
         else:
             data['receive'].status = 'กำลังจัดส่ง'
             data['receive'].save()
             data['message'] = 'Success'
+        
+        order = Order.objects.all().last()
+        data['count'] = OrderItem.objects.filter(order=order, receive__status='กำลังจัดส่ง').count()
+        print(data['count'])
         return render(request, 'alert.html', {'data':data})
     else:
         print('User')
         order_item = OrderItem.objects.get(pk=id)
-        Receive.objects.filter(pk=order_item.receive.pk).update(status='ยืนยันการรับของ')
-        return render(request, 'review.html')
+        receive = Receive.objects.get(pk=order_item.receive.pk)
+        receive.status='ยืนยันการรับของ'
+        receive.save()
+        return render(request, 'review.html', {'receive':receive})

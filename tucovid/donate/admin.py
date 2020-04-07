@@ -4,7 +4,7 @@ from .models import *
 import datetime
 import time
 # Register your models here.
-def printing(modeladmin, request, queryset):
+def print(modeladmin, request, queryset):
     queryset.update(status='กำลังบรรจุ')
     d = datetime.datetime.today()
     day = d.strftime("%d")
@@ -38,7 +38,7 @@ class ReceiveAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Receive._meta.fields]
     list_filter = ('hospital', 'status')
     list_editable = ('shipping_id',)
-    actions = [printing]
+    actions = [print]
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):

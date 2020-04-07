@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -22,20 +23,20 @@
         <div id="modal" class="modal is-active">
           <div class="modal-background"></div>
           <div class="modal-content">
-           <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title" {% if data.message == 'Success' %} style="color: green;" {% else %} style="color: red;" {% endif %} >{{ data.message }}</p>
-          </header>
-          <section class="modal-card-body" style="font-size: 15px;">
-            <p>ชื่อ-นามสกุล : {{ data.receive.receiver }}</p>
-            <p>ขอรับบริจาค : {{ data.receive.item }} ({{ data.receive.item.quantity | stringformat:'d' }} {{ data.receive.item.unit }})</p>
-            <p>สถานที่สำหรับจัดส่ง : {{ data.receive.hospital }}</p>
-            <p>{{ data.receive.hospital.address }}</p>
-            <p>ฝ่าย/สาขา : {{ data.receive.job }}</p>
-            <p>เลขวุฒิบัตร : {{ data.receive.holding_medical_license_no }}</p>
-            <p style="color: green;">สถานะ : {{ data.receive.status }}</p>
-        </section>
-        </div>
+            <div class="modal-card">
+              <header class="modal-card-head">
+                <p class="modal-card-title" {% if data.message == 'Success' %} style="color: green;" {% else %} style="color: red;" {% endif %} >{{ data.message }} ({{ data.count|intcomma }})</p>
+              </header>
+              <section class="modal-card-body" style="font-size: 15px;">
+                <p>ชื่อ-นามสกุล : {{ data.receive.receiver }}</p>
+                <p>ขอรับบริจาค : {{ data.receive.item }} ({{ data.receive.item.quantity | stringformat:'d' }} {{ data.receive.item.unit }})</p>
+                <p>สถานที่สำหรับจัดส่ง : {{ data.receive.hospital }}</p>
+                <p>{{ data.receive.hospital.address }}</p>
+                <p>ฝ่าย/สาขา : {{ data.receive.job }}</p>
+                <p>เลขวุฒิบัตร : {{ data.receive.holding_medical_license_no }}</p>
+                <p style="color: green;">สถานะ : {{ data.receive.status }}</p>
+              </section>
+            </div>
           </div>
           <button id="modal-close" class="modal-close"></button>
         </div>
@@ -48,11 +49,4 @@ var imageModalCloseBtn = document.querySelector('#modal-close');
 imageModalCloseBtn.addEventListener('click', function(){
   modalDlg.classList.remove('is-active');
 });
-// .click(function() {
-//   .addClass("is-active");  
-// });
-
-// $(".modal-close").click(function() {
-//    $(".modal").removeClass("is-active");
-// });
 </script>

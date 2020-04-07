@@ -69,7 +69,7 @@
     for (let qrcode of qrcodes) {
       console.log(qrcode.id)
       const qrcodeImage = new QRCode(qrcode.id, {
-          text: "http://127.0.0.1:8000/shipping/"+qrcode.id,
+          text: "https://thammask.storemesh.com/process/"+qrcode.id,
           width: 100,
           height: 100,
           colorDark : "#000000",
