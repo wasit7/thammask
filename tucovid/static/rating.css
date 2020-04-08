@@ -1,0 +1,101 @@
+.rating-header {
+    font-family: 'Roboto', 'Kanit', 'san-serif';
+    color: #212529;
+  }
+  
+  .delete-item {
+    color: #424242;
+  }
+  
+  .vertical-center {
+    display: flex;
+    align-items: center;
+  }
+  
+  .item-image {
+    width: auto;
+    height: 100px;
+  }
+  
+  .price {
+    font-size: medium;
+    color: #ef5350;
+  }
+  
+  .text-right {
+    justify-content: flex-end;
+  }
+  
+  .marginless {
+    margin: 0 !important;
+  }
+  
+  .paddingless {
+    padding: 0 !important;
+  }
+  
+  .bg-light > .card-body {
+    padding: 0.5rem;
+  }
+  
+  .margin-top {
+    margin-top: 12px;
+  }
+  
+  .margin-bottom {
+    margin-bottom: 12px;
+  }
+  
+  .remove-decoration {
+    text-decoration: none;
+  }
+  
+  .borderless-btn {
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+  
+  .btnrating {
+    outline: none;
+    border: 0;
+    min-width: fit-content;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    font-size: 30px;
+  }
+  
+  .selected {
+    color: #ffc107;
+  }
+  
+  .rating-zone {
+    margin: 10 10 10 20px;
+    display: flex;
+    margin-top: 8px;
+  }
+  
+  .price-with-button {
+    display: flex;
+    align-items: center;
+  }
+  
+  .padding-right {
+    padding-right: 16px;
+  }
+  
+  @font-face {
+    font-family: "Fontawesome";
+    font-style: normal;
+    font-weight: 400;
+    src: url('https://use.fontawesome.com/releases/v5.2.0/css/all.css');
+    unicode-range: \f005;
+  }
+  
+  .vertical-line {
+    border-left: 2px solid #848484;
+    height: 100px;
+  }

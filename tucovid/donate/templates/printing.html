@@ -20,41 +20,62 @@
   </head>
   <body>
     <div class="page">
-      <div class="columns">
+      <div class="print_gird">
         {% for item in items %}
-        <div class="column is-half">
-          ชื่อ-นามสกุล : {{ item.receive.receiver.full_name }}<br>
-          สถานที่จัดส่ง : {{ item.receive.hospital }}<br>{{ item.receive.hospital.address }}<br>
-          ฝ่าย/สาขา : {{ item.receive.job }}<br>
-          เลขวุฒิบัตร : {{ item.receive.holding_medical_license_no }}<br>
-          <div class="qrcode" id='{{ item.pk }}'></div>
+        <div class="address is-half">
+          <p>ชื่อ-นามสกุล : {{ item.receive.receiver.full_name }}</p>
+          <p>สถานที่จัดส่ง : {{ item.receive.hospital }}</p>
+          <p>{{ item.receive.hospital.address }}</p>
+          <p>ฝ่าย/สาขา : {{ item.receive.job }}</p>
+          <p>เลขวุฒิบัตร : {{ item.receive.holding_medical_license_no }}</p>
+          <div class="qrcode" id='{{ item.pk }}?u_id={{ item.receive.unique_id }}' style="margin-top: 10px;" ></div><br>
         </div>
         {% endfor %}
       </div>
     </div>
+    {% if items.has_other_pages %}
+    <div class="paginations">
+      <nav class="pagination" role="navigation" aria-label="pagination">
+        {% if items.has_previous %}
+          <a href="?page={{ items.previous_page_number }}" class="pagination-previous">Previous</a>
+        {% else %}
+          <a class="pagination-previous" disabled>Previous</a>
+        {% endif %}
+
+        {% if items.has_next %}
+          <a href="?page={{ items.next_page_number }}" class="pagination-next">Next page</a>
+        {% else %}
+          <a class="pagination-next" disabled>Next page</a>
+        {% endif %}
+        <ul class="pagination-list">
+          {% for i in items.paginator.page_range %}
+            {% if items.number == i %}
+              <li class="active">
+                <a class="pagination-link is-current" aria-label="Page {{ i }}" aria-current="page">{{ i }}</a>
+              </li>
+            {% else %}
+              <li>
+                <a href="?page={{ i }}" class="pagination-link" aria-label="Goto page {{ i }}">{{ i }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    {% endif %}
   </body>
   <script>
     const qrcodes = document.querySelectorAll(".qrcode");
     for (let qrcode of qrcodes) {
       console.log(qrcode.id)
       const qrcodeImage = new QRCode(qrcode.id, {
-          text: "http://127.0.0.1:8000/printint/",
-          width: 128,
-          height: 128,
+          text: "https://thammask.storemesh.com/process/"+qrcode.id,
+          width: 100,
+          height: 100,
           colorDark : "#000000",
           colorLight : "#ffffff",
-          correctLevel : QRCode.CorrectLevel.H
+          correctLevel : QRCode.CorrectLevel.H,
       });
     }
-//     var qrcode_id = document.querySelector('.qr_code').id
-//     console.log(qrcode_id)
-//     var qrcode = new QRCode(qrcode_id, {
-//     text: "http://jindo.dev.naver.com/collie",
-//     width: 128,
-//     height: 128,
-//     colorDark : "#000000",
-//     colorLight : "#ffffff",
-//     correctLevel : QRCode.CorrectLevel.H
-// });
   </script>
 </html>
