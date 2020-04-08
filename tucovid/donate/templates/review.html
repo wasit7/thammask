@@ -1,86 +1,104 @@
 {% extends 'base.html' %}
 {% load static %}
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>THAMMASK</title>
-    <meta name="description" content="THAMMASK" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
-    />
-    <link rel="stylesheet" href="theme.css" />
-    <link rel="stylesheet" href="base.css" />
-  </head>
-  <body>
-    <div class="custom-container">
-      <div class="sidebar">
-        <div class="logo">
-          <img src="./assets/Thammasat_main_logo.png" alt="" />
-        </div>
-        <h4 class="title">Thammask system</h4>
+{% block content %}
+<div class="content">
+  <h4 class="title is-4 no-margin">Review</h4><br>
+  <div class="field is-horizontal">
+    <div class="field">
+      <div class="control">
+        <label>ชื่อ-นามสกุล : {{ data.receive.receiver }}</label><br>
+        <label>ฝ่าย/สาขา : {{ data.receive.job }}</label><br>
+        <label>เลขวุฒิบัตร : {{ data.receive.holding_medical_license_no }}</label><br>
+        <label>{{ data.receive.hospital }} - {{ data.receive.item }} ({{ data.receive.item.quantity | stringformat:'d' }} {{ data.receive.item.unit }})</label>
       </div>
-      {% block menu %}
-      {% endblock menu %}
-      {% block content %}
-      <div class="content">
-        <h4 class="title is-4 no-margin">Review for TUSHIPPING000000001</h4>
-        <form action="" class="settings-up-form">
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal"></div>
-            <div class="field-body">
-              <div class="likert-scale">
-                <p class="no-margin">เห็นด้วยอย่างยิ่ง</p>
-                <p class="no-margin">เห็นด้วย</p>
-                <p class="no-margin">เฉยๆ</p>
-                <p class="no-margin">ไม่เห็นด้วย</p>
-                <p class="no-margin">ไม่เห็นด้วยอย่างยิ่ง</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-body">
-              <div class="likert-scale">
-                <input type="radio">
-                <input type="radio">
-                <input type="radio">
-                <input type="radio">
-                <input type="radio">
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">ข้อเสนอแนะ*</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <textarea class="textarea" placeholder="E.g. Quality of facial mask"></textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal margin-top">
-            <div class="field-label"></div>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
-                  <button class="button is-primary">
-                    ยืนยัน
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-      {% endblock content %}
     </div>
-  </body>
-</html>
+  </div>
+  <form action="{% url 'donate:review' data.id %}" method="POST" class="settings-up-form">
+    {% csrf_token %}
+    <div class="field is-horizontal">
+      <div class="field-label is-normal" style="margin: auto;">
+        <label class="label">คะแนนความพึงพอใจ*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <div class="rating-zone">
+              <input type="hidden" id="selected_rating" name="score" value="" required="required">
+              <input type="hidden" name="receive" value="{{ data.receive.pk }}" required="required">
+              <button type="button" class="btnrating btn btn-default btn-lg" data-attr="1" id="rating-star-1">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="btnrating btn btn-default btn-lg" data-attr="2" id="rating-star-2">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="btnrating btn btn-default btn-lg" data-attr="3" id="rating-star-3">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="btnrating btn btn-default btn-lg" data-attr="4" id="rating-star-4">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </button>
+              <button type="button" class="btnrating btn btn-default btn-lg" data-attr="5" id="rating-star-5">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal">
+      <div class="field-label is-normal">
+        <label class="label">ข้อเสนอแนะ*</label>
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" placeholder="ฝากข้อความถึงทีมงาน Thammask for Med" name="comment"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field is-horizontal margin-top">
+      <div class="field-label"></div>
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <button type="submit" class="button is-primary">
+              ยืนยัน
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+jQuery(document).ready(function ($) {
+
+    $(".btnrating").on('click', (function (e) {
+
+      const previous_value = $("#selected_rating").val();
+
+      const selected_value = $(this).attr("data-attr");
+      $("#selected_rating").val(selected_value);
+
+      $(".selected-rating").empty();
+      $(".selected-rating").html(selected_value);
+
+      for (i = 1; i <= selected_value; ++i) {
+        $("#rating-star-" + i).toggleClass('selected');
+        $("#rating-star-" + i).toggleClass('btn-default');
+      }
+
+      for (ix = 1; ix <= previous_value; ++ix) {
+        $("#rating-star-" + ix).toggleClass('selected');
+        $("#rating-star-" + ix).toggleClass('btn-default');
+      }
+    }));
+  });
+</script>
+{% endblock script %}

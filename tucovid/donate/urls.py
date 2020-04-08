@@ -10,4 +10,5 @@ urlpatterns = [
     path('verify_user', views.verify_user, name='check_user_exists'),
     path('printing/', views.printing, name='printing'),
     path('process/<int:id>', views.process, name='process'),
+    path('review/<int:id>', views.review, name='review')
 ]

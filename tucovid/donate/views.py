@@ -139,14 +139,6 @@ def request(request):
         return render(request, 'request.html', {'data':data})
 
 @login_required
-def review(request):
-    profile = Profile.objects.filter(user=request.user)
-    if not profile.exists():
-        return redirect('donate:profile')
-
-    return render(request, 'review.html')
-
-@login_required
 def printing(request):
     profile = Profile.objects.filter(user=request.user)
     if not profile.exists():
@@ -193,4 +185,33 @@ def process(request, id):
         receive = Receive.objects.get(pk=order_item.receive.pk)
         receive.status='ยืนยันการรับของ'
         receive.save()
-        return render(request, 'review.html', {'receive':receive})
+        return redirect('donate:review', id=id)
+
+@login_required
+def review(request, id):
+    profile = Profile.objects.filter(user=request.user)
+    if not profile.exists():
+        return redirect('donate:profile')
+
+    reviewer = Profile.objects.get(user__id=request.user.pk)
+    if request.method == 'POST':
+        reviews = Review.objects.filter(receive__pk=request.POST['receive'])
+        if reviews.exists():
+            review = Review.objects.get(receive__pk=request.POST['receive'])
+            review.reviewer = reviewer
+            review.score = request.POST['score']
+            review.comment = request.POST['comment']
+            review.save()
+        else:
+            post_copy = request.POST.copy()
+            post_copy['reviewer'] = reviewer
+            form = ReviewForm(post_copy)
+            if form.is_valid():
+                form.save()
+        return redirect('donate:review', id=id)
+    else:
+        data = dict()
+        order_item = OrderItem.objects.get(pk=id)
+        data['id'] = id
+        data['receive'] = Receive.objects.get(pk=order_item.receive.pk)
+        return render(request, 'review.html', {'data':data})
