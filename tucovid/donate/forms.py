@@ -14,7 +14,7 @@ class DonateForm(ModelForm):
 class ReceiveForm(ModelForm):
     class Meta:
         model = Receive
-        fields = ['receiver', 'item', 'hospital', 'job', 'holding_medical_license_no', 'note']
+        fields = ['receiver', 'item', 'shipping_address', 'job', 'holding_medical_license_no', 'note']
 
 class ReviewForm(ModelForm):
     class Meta:

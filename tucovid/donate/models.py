@@ -77,13 +77,105 @@ class Receive(models.Model):
         (SHIPPING,'Shipping'),
         (CONFIRM_RECEIVED,'Confirm received')
     ]
+
+    THAILAND_PROVINCES = (
+        ('KBI', 'กระบี่'),
+        ('BKK', 'กรุงเทพมหานคร'),
+        ('KRI', 'กาญจนบุรี'),
+        ('KSN', 'กาฬสินธุ์'),
+        ('KPT', 'กำแพงเพชร'),
+        ('KKN', 'ขอนแก่น'),
+        ('CTI', 'จันทบุรี'),
+        ('CCO', 'ฉะเชิงเทรา'),
+        ('CBI', 'ขลบุรี'),
+        ('CNT', 'ชัยนาท'),
+        ('CPM', 'ชัยภูมิ'),
+        ('CPN', 'ชุมพร'),
+        ('CRI', 'เชียงราย'),
+        ('CMI', 'เชียงใหม่'),
+        ('TRG', 'ตรัง'),
+        ('TRT', 'ตราด'),
+        ('TAK', 'ตาก'),
+        ('NYK', 'นครนายก'),
+        ('NPT', 'นครปฐม'),
+        ('NPM', 'นครพนม'),
+        ('NMA', 'นครราชสีมา'),
+        ('NST', 'นครศรีธรรมราช'),
+        ('NSN', 'นครสวรรค์'),
+        ('NBI', 'นนทบุรี'),
+        ('NWT', 'นราธิวาส'),
+        ('NAN', 'น่าน'),
+        ('BKN', 'บึงกาฬ'),
+        ('BRM', 'บุรีรัมย์'),
+        ('PTE', 'ปทุมธานี'),
+        ('PKN', 'ประจวบคีรีขันธ์'),
+        ('PRI', 'ปราจีนบุรี'),
+        ('PTN', 'ปัตตานี'),
+        ('PYO', 'พะเยา'),
+        ('AYA', 'พระนครศรีอยุธยา'),
+        ('PNA', 'พังงา'),
+        ('PLG', 'พัทลุง'),
+        ('PCT', 'พิจิตร'),
+        ('PLK', 'พิษณุโลก'),
+        ('PBI', 'เพชรบุรี'),
+        ('PNB', 'เพชรบูรณ์'),
+        ('PRE', 'แพร่'),
+        ('PKT', 'ภูเก็ต'),
+        ('NKM', 'มหาสารคาม'),
+        ('MDH', 'มุกดาหาร'),
+        ('MSN', 'แม่ฮ่องสอน'),
+        ('YST', 'ยโสธร'),
+        ('YLA', 'ยะลา'),
+        ('RET', 'ร้อยเอ็ด'),
+        ('RNG', 'ระนอง'),
+        ('RYG', 'ระยอง'),
+        ('RBR', 'ราชบุรี'),
+        ('LRI', 'ลพบุรี'),
+        ('LPG', 'ลำปาง'),
+        ('LPN', 'ลำพูน'),
+        ('LEI', 'เลย'),
+        ('SSK', 'ศรีสะเกษ'),
+        ('SNK', 'สกลนคร'),
+        ('SKA', 'สงขลา'),
+        ('STN', 'สตูล'),
+        ('SPK', 'สมุทรปราการ'),
+        ('SKM', 'สมุทรสงคราม'),
+        ('SKN', 'สมุทรสาคร'),
+        ('SKW', 'สระแก้ว'),
+        ('SRI', 'สระบุรี'),
+        ('SBR', 'สิงห์บุรี'),
+        ('STI', 'สุโขทัย'),
+        ('SPB', 'สุพรรณบุรี'),
+        ('SNI', 'สุราษฎร์ธานี'),
+        ('SRN', 'สุรินทร์'),
+        ('NKI', 'หนองคาย'),
+        ('NBP', 'หนองบัวลำภู'),
+        ('ATG', 'อ่างทอง'),
+        ('ACR', 'อำนาจเจริญ'),
+        ('UDN', 'อุดรธานี'),
+        ('UTT', 'อุตรดิตถ์'),
+        ('UTI', 'อุทัยธานี'),
+        ('UBN', 'อุบลราชธานี')
+    )
+
+    GRADE = (
+        ('A','A'),
+        ('B','B'),
+    )
     
+    ref = models.CharField(max_length=255, null=True, blank=True)
     receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+    #use for add data
+    full_name = models.CharField(max_length=255, null=True, blank=True)
+    tel = models.CharField(max_length=20, null=True, blank=True)
+
     item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True, blank=True)
-    hospital = models.ForeignKey(Hospital, on_delete=models.CASCADE, null=True, blank=True)
+    shipping_address = models.TextField(null=True, blank=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True, blank=True)
     holding_medical_license_no = models.CharField(max_length=20, null=True, blank=True)
     shipping_id = models.CharField(max_length=30, null=True, blank=True)
+    province = models.CharField(max_length=255, choices=THAILAND_PROVINCES, null=True, blank=True)
+    grade = models.CharField(max_length=5, choices=GRADE, default='A')
     note = models.TextField(null=True, blank=True)
     status = models.CharField(max_length=100, choices=RECEIVE_STATUS, default=WAITING_FOR_PRODUCTION)
     unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)

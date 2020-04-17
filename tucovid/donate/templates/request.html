@@ -73,18 +73,12 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <div class="select is-fullwidth">
-              <select name="hospital" required>
-                <option disabled selected value=""
-                  >กรุณาเลือกสถานที่สำหรับจัดส่ง</option
-                >
-                {% for hospital in data.hospitals %}
-                <option value="{{ hospital.pk }}"
-                  >{{ hospital.hospital_name }} : {{ hospital.address }}</option
-                >
-                {% endfor %}
-              </select>
-            </div>
+            <textarea
+              class="textarea"
+              placeholder="ที่อยู่สำหรับจัดส่ง"
+              name="shipping_address" 
+              required
+            ></textarea>
           </div>
         </div>
       </div>

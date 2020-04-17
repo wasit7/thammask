@@ -31,19 +31,20 @@
             {% if request.user.pk|get_full_name != None %}
               <div class="menu-group">
                 <a
+                  href="{% url 'donate:home' %}"
+                  class="menu-item {% if request.path == '/home/' %} is-active {% endif %}"
+                  >หน้าแรก</a
+                >
+                <a
                   href="{% url 'donate:donate' %}"
                   class="menu-item {% if request.path == '/donate/' %} is-active {% endif %}"
                   >บริจาคสิ่งของ</a
                 >
-              </div>
-              <div class="menu-group">
                 <a
                   href="{% url 'donate:request' %}"
                   class="menu-item {% if request.path == '/request/' %} is-active {% endif %}"
                   >ขอรับหน้ากากอนามัย</a
                 >
-              </div>
-              <div class="menu-group">
                 <a
                   href="{% url 'donate:profile' %}"
                   class="menu-item {% if request.path == '/profile/' %} is-active {% endif %}"
