@@ -36,7 +36,7 @@ class DonateAdmin(admin.ModelAdmin):
 @admin.register(Receive)
 class ReceiveAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Receive._meta.fields]
-    list_filter = ('hospital', 'status')
+    list_filter = ('status',)
     list_editable = ('shipping_id',)
     actions = [print]
 

@@ -46,7 +46,7 @@ def profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect('donate:home')
+            return redirect('donate:profile')
         else:
             data = dict()
             data['nav'] = ({

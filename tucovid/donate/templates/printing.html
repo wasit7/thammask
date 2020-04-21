@@ -24,7 +24,7 @@
         {% for item in items %}
         <div class="address is-half">
           <p>ชื่อ-นามสกุล : {{ item.receive.receiver.full_name }}</p>
-          <p>สถานที่จัดส่ง : {{ item.receive.hospital }}</p>
+          <p>สถานที่จัดส่ง : {{ item.receive.shipping_address }}</p>
           <p>{{ item.receive.hospital.address }}</p>
           <p>ฝ่าย/สาขา : {{ item.receive.job }}</p>
           <p>เลขวุฒิบัตร : {{ item.receive.holding_medical_license_no }}</p>
