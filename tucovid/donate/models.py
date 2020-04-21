@@ -168,7 +168,6 @@ class Receive(models.Model):
     #use for add data
     full_name = models.CharField(max_length=255, null=True, blank=True)
     tel = models.CharField(max_length=20, null=True, blank=True)
-
     item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True, blank=True)
     shipping_address = models.TextField(null=True, blank=True)
     job = models.ForeignKey(Job, on_delete=models.CASCADE, null=True, blank=True)
@@ -183,7 +182,7 @@ class Receive(models.Model):
     updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
-        return str(self.hospital)
+        return str(self.receiver)
 
 class Review(models.Model):
     reviewer = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
